@@ -83,7 +83,7 @@ function registerPeerIdentities {
       while [[ "$COUNT" -le $NUM_PEERS ]]; do
          initPeerVars $ORG $COUNT
          log "Registering $PEER_NAME with $CA_NAME"
-         fabric-ca-client register -d --id.name $PEER_NAME --id.secret $PEER_PASS --id.type peer
+         $GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-client register -d --id.name $PEER_NAME --id.secret $PEER_PASS --id.type peer
          COUNT=$((COUNT+1))
       done
       log "Registering admin identity with $CA_NAME"
