@@ -27,6 +27,7 @@ function main {
 function enrollCAAdmin {
    #waitPort "$CA_NAME to start" 90 $CA_LOGFILE $CA_HOST 7054
    log "Enrolling with $CA_NAME as bootstrap identity ..."
+   mkdir -p $HOME/cas
    export FABRIC_CA_CLIENT_HOME=$HOME/cas/$CA_NAME
    export FABRIC_CA_CLIENT_TLS_CERTFILES=$CA_CHAINFILE
    $GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-client enroll -d -u https://$CA_ADMIN_USER_PASS@$CA_HOST:7054
