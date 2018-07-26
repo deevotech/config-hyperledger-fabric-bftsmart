@@ -30,7 +30,7 @@ NUM_PEERS=2
 ORGS="$ORDERER_ORGS $PEER_ORGS"
 
 # Set to true to populate the "admincerts" folder of MSPs
-ADMINCERTS=false
+ADMINCERTS=true
 
 # Number of orderer nodes
 NUM_ORDERERS=1
@@ -76,7 +76,7 @@ RUN_FAIL_FILE=${LOGDIR}/run.fail
 export FABRIC_CA_CLIENT_ID_AFFILIATION=org1
 
 # Set to true to enable use of intermediate CAs
-USE_INTERMEDIATE_CA=true
+USE_INTERMEDIATE_CA=false
 
 
 # Config block file path
