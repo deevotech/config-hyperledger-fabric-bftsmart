@@ -55,7 +55,7 @@ SETUP_TIMEOUT=120
 
 # Log directory
 LOGDIR=$DATA/logs
-LOGPATH=/$LOGDIR
+LOGPATH=$LOGDIR
 
 # Name of a the file to create when setup is successful
 SETUP_SUCCESS_FILE=${LOGDIR}/setup.successful
@@ -66,7 +66,7 @@ SETUP_LOGFILE=${LOGDIR}/setup.log
 RUN_LOGFILE=${LOGDIR}/run.log
 # The run container's summary log file
 RUN_SUMFILE=${LOGDIR}/run.sum
-RUN_SUMPATH=/${RUN_SUMFILE}
+RUN_SUMPATH=${RUN_SUMFILE}
 # Run success and failure files
 RUN_SUCCESS_FILE=${LOGDIR}/run.success
 RUN_FAIL_FILE=${LOGDIR}/run.fail
@@ -119,13 +119,13 @@ function initOrgVars {
    USER_NAME=user-${ORG}
    USER_PASS=${USER_NAME}pw
 
-   ROOT_CA_CERTFILE=/${DATA}/${ORG}-ca-cert.pem
-   INT_CA_CHAINFILE=/${DATA}/${ORG}-ca-chain.pem
-   ANCHOR_TX_FILE=/${DATA}/orgs/${ORG}/anchors.tx
+   ROOT_CA_CERTFILE=${DATA}/${ORG}-ca-cert.pem
+   INT_CA_CHAINFILE=${DATA}/${ORG}-ca-chain.pem
+   ANCHOR_TX_FILE=${DATA}/orgs/${ORG}/anchors.tx
    ORG_MSP_ID=${ORG}MSP
-   ORG_MSP_DIR=/${DATA}/orgs/${ORG}/msp
+   ORG_MSP_DIR=${DATA}/orgs/${ORG}/msp
    ORG_ADMIN_CERT=${ORG_MSP_DIR}/admincerts/cert.pem
-   ORG_ADMIN_HOME=/${DATA}/orgs/$ORG/admin
+   ORG_ADMIN_HOME=${DATA}/orgs/$ORG/admin
 
    if test "$USE_INTERMEDIATE_CA" = "true"; then
       CA_NAME=$INT_CA_NAME

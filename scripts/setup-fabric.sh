@@ -20,7 +20,7 @@ function main {
    generateChannelArtifacts
    log "Finished building channel artifacts"
    #generateBftConfig
-   touch /$SETUP_SUCCESS_FILE
+   touch $SETUP_SUCCESS_FILE
 }
 
 # Enroll the CA administrator
@@ -376,7 +376,7 @@ Capabilities:
    "
    } > /etc/hyperledger/fabric/configtx.yaml
    # Copy it to the data directory to make debugging easier
-   cp /etc/hyperledger/fabric/configtx.yaml /$DATA
+   cp /etc/hyperledger/fabric/configtx.yaml $DATA
 }
 
 function generateChannelArtifacts() {
