@@ -36,7 +36,7 @@ ADMINCERTS=true
 NUM_ORDERERS=1
 
 # The volume mount to share data between containers
-DATA=/hyperledgerconfig/data
+DATA=$HOME/hyperledgerconfig/data
 
 # The path to the genesis block
 GENESIS_BLOCK_FILE=$DATA/genesis.block
