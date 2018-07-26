@@ -12,6 +12,7 @@
 #
 
 function main {
+   mkdir -p ${DATA}
    log "Beginning building channel artifacts ..."
    registerIdentities
    getCACerts

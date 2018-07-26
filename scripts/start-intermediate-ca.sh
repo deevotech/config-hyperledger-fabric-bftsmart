@@ -21,6 +21,7 @@ if [ -z "${g}" ] ; then
 fi
 source $(dirname "$0")/env.sh
 ORG=${g}
+mkdir -p ${DATA}
 initOrgVars $ORG
 
 set -e

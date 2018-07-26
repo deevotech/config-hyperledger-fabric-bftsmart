@@ -26,6 +26,7 @@ if [ -z "${g}" ] ; then
 fi
 source $(dirname "$0")/env.sh
 ORG=${g}
+mkdir -p ${DATA}
 initOrdererVars $ORG
 
 # Enroll to get orderer's TLS cert (using the "tls" profile)
@@ -47,6 +48,13 @@ copyAdminCert $ORDERER_GENERAL_LOCALMSPDIR
 mkdir -p $DATA/orderer
 
 env | grep ORDERER
-FABRIC_CFG_PATH=/etc/hyperledger/fabric
-rm -rf /var/hyperledger/production/orderer/*
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/orderer
+rm -rf /var/hyperledger/production/*
+mkdir -p data
+mkdir -p data/logs
+if [ -f ./data/logs/orderer.out ] ; then
+rm ./data/logs/orderer.out
+fi
+
+$GOPATH/src/github.com/hyperledger/fabric/build/bin/orderer start > ./data/logs/orderer.out 2>&1 &
+echo "done see /data/logs/orderer"
+

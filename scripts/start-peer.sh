@@ -26,6 +26,7 @@ if [ -z "${g}" ] ; then
 fi
 source $(dirname "$0")/env.sh
 ORG=${g}
+mkdir -p ${DATA}
 initPeerVars $ORG
 
 # Although a peer may use the same TLS key and certificate file for both inbound and outbound TLS,
@@ -59,7 +60,18 @@ mkdir -p /data/$PEER_NAME
 env | grep CORE > /data/$PEER_NAME/core.config
 env | grep CORE
 
-cp -R $FABRIC_CA_CLIENT_HOME/* /data/$PEER_NAME/
+cp -R $FABRIC_CA_CLIENT_HOME/* $DATA/$PEER_NAME/
 
+if [ -f ./data/logs/${PEER_NAME}.out ] ; then
+rm ./data/logs/${PEER_NAME_NAME}.out
+fi
+if [ -d /var/hyperledger/production ] ; then
 rm -rf /var/hyperledger/production/*
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer node start
+fi
+chaincodeImages=`docker images | grep "^dev-peer" | awk '{print $3}'`
+if [ "$chaincodeImages" != "" ]; then
+  # log "Removing chaincode docker images ..."
+   docker rmi -f $chaincodeImages > /dev/null
+fi
+$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer node start > data/logs/${HOST_NAME}.out 2>&1 &
+echo "success see in data/logs/peer1-org1.out"
