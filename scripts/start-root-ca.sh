@@ -46,4 +46,6 @@ sed -i "s/OU: Fabric/OU: COP/g" \
    $FABRIC_CA_SERVER_HOME/fabric-ca-server-config.yaml
 
 # Start the root CA
-$GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-server/fabric-ca-server start
+mkdir -p data
+mkdir -p data/logs
+$GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-server/fabric-ca-server start > ./data/logs/fabric-ca-rca-${g}.out 2>&1 &

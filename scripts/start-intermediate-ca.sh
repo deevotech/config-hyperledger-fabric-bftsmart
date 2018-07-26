@@ -52,6 +52,7 @@ sed -i "/affiliations:/a \\   $aff" \
    $FABRIC_CA_SERVER_HOME/fabric-ca-server-config.yaml
 sed -i "s/OU: Fabric/OU: COP/g" \
    $FABRIC_CA_SERVER_HOME/fabric-ca-server-config.yaml
-
+mkdir -p data
+mkdir -p data/logs
 # Start the intermediate CA
-$GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-server/fabric-ca-server start
+$GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-server/fabric-ca-server start > ./data/logs/fabric-ca-rca-${g}.out 2>&1 &
