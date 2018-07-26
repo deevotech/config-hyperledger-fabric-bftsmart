@@ -392,9 +392,9 @@ Capabilities:
         # the network may cause a fork.
         V1_1_RESOURCETREE_EXPERIMENTAL: false
    "
-   } > /etc/hyperledger/fabric/configtx.yaml
+} > $DATA/configtx.yaml
    # Copy it to the data directory to make debugging easier
-   cp /etc/hyperledger/fabric/configtx.yaml $DATA
+   #cp /etc/hyperledger/fabric/configtx.yaml $DATA
 }
 
 function generateChannelArtifacts() {
@@ -456,7 +456,7 @@ BLOCKS_PER_THREAD=10000
 
 #IDs of the frontends present in the system, separate by commas
 RECEIVERS=1000
-" > /data/node.config
+" > $DATA/node.config
 #cat /data/orgs/org0/admin/msp/keystore/$KEYFILE > /data/key.pem
 #cat /data/orgs/org0/admin/msp/signcerts/$SIGN_FILE > /data/peer.pem
 
