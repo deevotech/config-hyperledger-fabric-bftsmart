@@ -25,7 +25,7 @@ mkdir -p ${DATA}
 initOrgVars $ORG
 
 set -e
-export FABRIC_CA_SERVER_HOME=/etc/hyperledger/fabric-ca
+export FABRIC_CA_SERVER_HOME=$HOME/fabric-ca
 export FABRIC_CA_SERVER_CA_NAME=ica-${ORG}
 export FABRIC_CA_SERVER_INTERMEDIATE_TLS_CERTFILES=${DATA}/${ORG}-ca-cert.pem
 export FABRIC_CA_SERVER_CSR_HOSTS=ica-${ORG}

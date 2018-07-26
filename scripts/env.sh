@@ -39,10 +39,10 @@ NUM_ORDERERS=1
 DATA=/hyperledgerconfig/data
 
 # The path to the genesis block
-GENESIS_BLOCK_FILE=/$DATA/genesis.block
+GENESIS_BLOCK_FILE=$DATA/genesis.block
 
 # The path to a channel transaction
-CHANNEL_TX_FILE=/$DATA/mychannel.tx
+CHANNEL_TX_FILE=$DATA/mychannel.tx
 
 # Name of test channel
 CHANNEL_NAME=mychannel
@@ -155,8 +155,8 @@ function initOrdererVars {
    ORDERER_PASS=${ORDERER_NAME}pw
    ORDERER_NAME_PASS=${ORDERER_NAME}:${ORDERER_PASS}
    ORDERER_LOGFILE=$LOGDIR/${ORDERER_NAME}.log
-   MYHOME=/etc/hyperledger/orderer
-
+   MYHOME=$HOME/orderer
+   
    export FABRIC_CA_CLIENT=$MYHOME
    export ORDERER_GENERAL_LOGLEVEL=debug
    export ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -185,7 +185,7 @@ function genClientTLSCert {
    # Get a client cert
    $GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-client enroll -d --enrollment.profile tls -u $ENROLLMENT_URL -M /tmp/tls --csr.hosts $HOST_NAME
 
-   mkdir /$DATA/tls || true
+   mkdir $DATA/tls || true
    cp /tmp/tls/signcerts/* $CERT_FILE
    cp /tmp/tls/keystore/* $KEY_FILE
    rm -rf /tmp/tls
@@ -204,7 +204,8 @@ function initPeerVars {
    PEER_PASS=${PEER_NAME}pw
    PEER_NAME_PASS=${PEER_NAME}:${PEER_PASS}
    PEER_LOGFILE=$LOGDIR/${PEER_NAME}.log
-   MYHOME=/opt/gopath/src/github.com/hyperledger/fabric/peer
+   #MYHOME=/opt/gopath/src/github.com/hyperledger/fabric/peer
+   MYHOME=$HOME/peer
    TLSDIR=$MYHOME/tls
 
    export FABRIC_CA_CLIENT=$MYHOME
@@ -222,8 +223,8 @@ function initPeerVars {
    export CORE_PEER_TLS_ENABLED=true
    export CORE_PEER_TLS_CLIENTAUTHREQUIRED=true
    export CORE_PEER_TLS_ROOTCERT_FILE=$CA_CHAINFILE
-   export CORE_PEER_TLS_CLIENTCERT_FILE=/$DATA/tls/$PEER_NAME-cli-client.crt
-   export CORE_PEER_TLS_CLIENTKEY_FILE=/$DATA/tls/$PEER_NAME-cli-client.key
+   export CORE_PEER_TLS_CLIENTCERT_FILE=$DATA/tls/$PEER_NAME-cli-client.crt
+   export CORE_PEER_TLS_CLIENTKEY_FILE=$DATA/tls/$PEER_NAME-cli-client.key
    export CORE_PEER_PROFILE_ENABLED=true
    # gossip variables
    export CORE_PEER_GOSSIP_USELEADERELECTION=true
