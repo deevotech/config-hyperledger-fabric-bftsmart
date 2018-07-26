@@ -19,7 +19,7 @@ shift $((OPTIND-1))
 if [ -z "${g}" ] ; then
     usage
 fi
-
+source $(dirname "$0")/env.sh
 set -e
 export FABRIC_CA_SERVER_HOME=$HOME/fabric-ca
 export FABRIC_CA_SERVER_TLS_ENABLED=true
