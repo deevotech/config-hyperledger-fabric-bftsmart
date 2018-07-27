@@ -35,10 +35,10 @@ export ENROLLMENT_URL=https://peer${n}-${ORG}:peer${n}-${ORG}pw@rca-${ORG}:7054
 export PEER_HOME=${DATA}/${PEER_NAME}
 export CORE_PEER_TLS_CERT_FILE=${DATA}/${PEER_NAME}/tls/server.crt
 export CORE_PEER_TLS_KEY_FILE=${DATA}/${PEER_NAME}/tls/server.key
-export CORE_PEER_TLS_CLIENTROOTCAS_FILES=$DATA/${ORG}-ca-chain.pem
+export CORE_PEER_TLS_CLIENTROOTCAS_FILES=$DATA/${ORG}-ca-cert.pem
 export CORE_PEER_TLS_CLIENTCERT_FILE=$DATA/${PEER_NAME}/tls/peer${n}-${ORG}-client.crt
 export CORE_PEER_TLS_CLIENTKEY_FILE=$DATA/${PEER_NAME}/tls/peer${n}-${ORG}-client.key
-export FABRIC_CA_CLIENT_TLS_CERTFILES=$DATA/${ORG}-ca-chain.pem
+export FABRIC_CA_CLIENT_TLS_CERTFILES=$DATA/${ORG}-ca-cert.pem
 mkdir -p $DATA/${PEER_NAME}
 mkdir -p $DATA/${PEER_NAME}
 export CORE_PEER_MSPCONFIGPATH=$DATA/$PEER_NAME/msp
