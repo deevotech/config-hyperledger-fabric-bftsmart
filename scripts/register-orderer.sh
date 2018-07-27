@@ -431,10 +431,10 @@ function generateChannelArtifacts() {
 function generateBftConfig() {
 KEYFILE=""
 SIGN_FILE=""
-for entry in `ls /data/orgs/org0/admin/msp/keystore/`; do
+for entry in `ls ${DATA}/orgs/org0/admin/msp/keystore/`; do
     KEYFILE=${entry}
 done
-for entry in `ls /data/orgs/org0/admin/msp/signcerts/`; do
+for entry in `ls ${DATA}/orgs/org0/admin/msp/signcerts/`; do
     SIGN_FILE=${entry}
 done
 echo "#The ID of the membership service provider (MSP)
