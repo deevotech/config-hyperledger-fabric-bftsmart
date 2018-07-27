@@ -38,6 +38,9 @@ $GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-clie
 # Copy the TLS key and cert to the appropriate place
 TLSDIR=$ORDERER_HOME/tls
 mkdir -p $TLSDIR
+mkdir -p /tmp/tls
+mkdir -p /tmp/signcets
+mkdir -p /tmp/keystore
 cp /tmp/tls/keystore/* $ORDERER_GENERAL_TLS_PRIVATEKEY
 cp /tmp/tls/signcerts/* $ORDERER_GENERAL_TLS_CERTIFICATE
 rm -rf /tmp/tls
