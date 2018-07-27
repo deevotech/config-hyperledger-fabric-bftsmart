@@ -97,7 +97,7 @@ env | grep CORE
 #cp -R $FABRIC_CA_CLIENT_HOME/* $DATA/$PEER_NAME/
 
 if [ -f ./data/logs/${PEER_NAME}.out ] ; then
-rm ./data/logs/${PEER_NAME_NAME}.out
+rm ./data/logs/${PEER_NAME}.out
 fi
 if [ -d /var/hyperledger/production ] ; then
 rm -rf /var/hyperledger/production/*
