@@ -441,10 +441,10 @@ echo "#The ID of the membership service provider (MSP)
 MSPID=org0MSP
 
 #Certificate of the node, compliant to Fabric's MSP guidelines
-CERTIFICATE=/opt/gopath/src/github.com/hyperledger/hyperledger-bftsmart-release-1.1/config/peer.pem
+CERTIFICATE=/opt/gopath/src/github.com/hyperledger/hyperledger/config/peer.pem
 
 #Private key of the node, compliant to Fabric's MSP guidelines
-PRIVKEY=/opt/gopath/src/github.com/hyperledger/hyperledger-bftsmart-release-1.1/config/key.pem
+PRIVKEY=/opt/gopath/src/github.com/hyperledger/hyperledger/config/key.pem
 
 #Number of signer/sending threads in the pool
 PARELLELISM=10
