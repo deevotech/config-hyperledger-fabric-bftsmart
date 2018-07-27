@@ -31,12 +31,11 @@ source $(dirname "$0")/env.sh
 ORG=${g}
 mkdir -p ${DATA}
 initPeerVars $ORG ${n}
+ENROLLMENT_URL=https://peer${n}-${ORG}:peer${n}-${ORG}pw@ica-org1:7054
 
 # Although a peer may use the same TLS key and certificate file for both inbound and outbound TLS,
 # we generate a different key and certificate for inbound and outbound TLS simply to show that it is permissible
 mkdir -p /tmp/tls
-mkdir -p /tmp/tls/signcerts
-mkdir -p /tmp/tls/keystore
 # Generate server TLS cert and key pair for the peer
 $GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-client enroll -d --enrollment.profile tls -u $ENROLLMENT_URL -M /tmp/tls --csr.hosts $PEER_HOST
 
