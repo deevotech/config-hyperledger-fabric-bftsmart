@@ -31,7 +31,7 @@ source $(dirname "$0")/env.sh
 ORG=${g}
 mkdir -p ${DATA}
 initPeerVars $ORG ${n}
-ENROLLMENT_URL=https://peer${n}-${ORG}:peer${n}-${ORG}pw@ica-org1:7054
+ENROLLMENT_URL=https://peer${n}-${ORG}:peer${n}-${ORG}pw@rca-${ORG}:7054
 
 # Although a peer may use the same TLS key and certificate file for both inbound and outbound TLS,
 # we generate a different key and certificate for inbound and outbound TLS simply to show that it is permissible

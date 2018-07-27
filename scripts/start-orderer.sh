@@ -31,7 +31,7 @@ source $(dirname "$0")/env.sh
 ORG=${g}
 mkdir -p ${DATA}
 initOrdererVars $ORG ${n}
-ENROLLMENT_URL=https://orderer${n}-${ORG}:orderer${n}-${ORG}pw@ica-org0:7054
+ENROLLMENT_URL=https://orderer${n}-${ORG}:orderer${n}-${ORG}pw@rca-${ORG}:7054
 mkdir -p /tmp/tls
 mkdir -p /tmp/tls/signcerts
 mkdir -p /tmp/tls/keystore
