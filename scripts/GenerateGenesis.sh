@@ -1,6 +1,10 @@
 #!/bin/bash
 usage() { echo "Usage: $0 [-c <channelname>]" 1>&2; exit 1; }
-DATA=/hyperledgerconfig/data
+set -e
+
+SDIR=$(dirname "$0")
+source $SDIR/env.sh
+
 GENESIS_BLOCK_FILE=$DATA/genesis.block
 export FABRIC_CFG_PATH=$DATA/
 while getopts ":c:" o; do
