@@ -9,11 +9,14 @@ set -e
 source $(dirname "$0")/env.sh
 
 # Wait for setup to complete sucessfully
-usage() { echo "Usage: $0 [-g <orgname>]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-g <orgname>] [-n <numberpeer>]" 1>&2; exit 1; }
 while getopts ":g::" o; do
     case "${o}" in
         g)
             g=${OPTARG}
+            ;;
+        n)
+            n=${OPTARG}
             ;;
         *)
             usage
@@ -21,13 +24,13 @@ while getopts ":g::" o; do
     esac
 done
 shift $((OPTIND-1))
-if [ -z "${g}" ] ; then
+if [ -z "${g}" ] || [ -z "${n}" ] ; then
     usage
 fi
 source $(dirname "$0")/env.sh
 ORG=${g}
 mkdir -p ${DATA}
-initOrdererVars $ORG
+initOrdererVars $ORG ${n}
 
 # Enroll to get orderer's TLS cert (using the "tls" profile)
 $GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-client enroll -d --enrollment.profile tls -u $ENROLLMENT_URL -M /tmp/tls --csr.hosts $ORDERER_HOST

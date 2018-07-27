@@ -37,7 +37,7 @@ function main {
    #generateChannelArtifacts
    log "Finished building channel artifacts"
    #generateBftConfig
-   touch $SETUP_SUCCESS_FILE
+   #touch $SETUP_SUCCESS_FILE
 }
 
 # Enroll the CA administrator

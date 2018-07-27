@@ -9,11 +9,14 @@ set -e
 
 source $(dirname "$0")/env.sh
 
-usage() { echo "Usage: $0 [-g <orgname>]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-g <orgname>] [-n <numberpeer>]" 1>&2; exit 1; }
 while getopts ":g::" o; do
     case "${o}" in
         g)
             g=${OPTARG}
+            ;;
+        n)
+            n=${OPTARG}
             ;;
         *)
             usage
@@ -21,13 +24,13 @@ while getopts ":g::" o; do
     esac
 done
 shift $((OPTIND-1))
-if [ -z "${g}" ] ; then
+if [ -z "${g}" ] || [ -z "${n}" ] ; then
     usage
 fi
 source $(dirname "$0")/env.sh
 ORG=${g}
 mkdir -p ${DATA}
-initPeerVars $ORG
+initPeerVars $ORG ${n}
 
 # Although a peer may use the same TLS key and certificate file for both inbound and outbound TLS,
 # we generate a different key and certificate for inbound and outbound TLS simply to show that it is permissible

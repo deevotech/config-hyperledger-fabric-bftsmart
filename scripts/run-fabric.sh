@@ -64,7 +64,7 @@ function main {
    initPeerVars ${PORGS[1]} 1
    switchToAdminIdentity
    logr "Instantiating chaincode on $PEER_HOST ..."
-   export CORE_CHAINCODE_MODE=dev
+
    peer chaincode instantiate -C $CHANNEL_NAME -n mycc -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "$POLICY" $ORDERER_CONN_ARGS
    peer chaincode list --installed -C $CHANNEL_NAME > data/logs/listchaincode_installed.txt
    peer chaincode list --instantiated -C $CHANNEL_NAME $ORDERER_CONN_ARGS > data/logs/listchaincode_instantiated.txt
