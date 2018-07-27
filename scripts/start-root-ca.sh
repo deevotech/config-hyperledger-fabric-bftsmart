@@ -34,6 +34,7 @@ $GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-server/fabric-ca-serv
 
 # Copy the root CA's signing certificate to the data directory to be used by others
 mkdir -p ${DATA}
+rm -rf ${DATA}/*
 cp $FABRIC_CA_SERVER_HOME/ca-cert.pem $TARGET_CERTFILE
 
 # Add the custom orgs
