@@ -10,7 +10,7 @@ set -e
 source $(dirname "$0")/env.sh
 
 usage() { echo "Usage: $0 [-g <orgname>] [-n <numberpeer>]" 1>&2; exit 1; }
-while getopts ":g::" o; do
+while getopts ":g:n:" o; do
     case "${o}" in
         g)
             g=${OPTARG}

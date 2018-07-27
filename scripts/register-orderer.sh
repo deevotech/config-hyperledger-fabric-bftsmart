@@ -11,7 +11,7 @@
 # 2) Builds the channel artifacts (e.g. genesis block, etc)
 #
 usage() { echo "Usage: $0 [-g <orgname>]" 1>&2; exit 1; }
-while getopts ":g::" o; do
+while getopts ":g:" o; do
     case "${o}" in
         g)
             g=${OPTARG}
