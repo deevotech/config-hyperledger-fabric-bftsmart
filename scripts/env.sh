@@ -205,6 +205,7 @@ function initPeerVars {
    PEER_NAME_PASS=${PEER_NAME}:${PEER_PASS}
    PEER_LOGFILE=$LOGDIR/${PEER_NAME}.log
    #MYHOME=/opt/gopath/src/github.com/hyperledger/fabric/peer
+   mkdir -p $HOME/peer
    MYHOME=$HOME/peer
    TLSDIR=$MYHOME/tls
 
