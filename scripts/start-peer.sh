@@ -110,6 +110,8 @@ if [ "$chaincodeImages" != "" ]; then
   # log "Removing chaincode docker images ..."
    docker rmi -f $chaincodeImages > /dev/null
 fi
+mkdir -p data
+mkdir -p data/logs
 cp ../config/core-peer${n}-${ORG}.yaml $DATA/core.yaml
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer node start > data/logs/${HOST_NAME}.out 2>&1 &
 echo "success see in data/logs/peer1-org1.out"
