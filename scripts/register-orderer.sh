@@ -210,7 +210,7 @@ Organizations:
         ID: org0MSP
 
         # MSPDir is the filesystem path which contains the MSP configuration.
-        MSPDir: /data/orgs/org0/msp
+        MSPDir: ${DATA}/orgs/org0/msp
 
     - &org1
         # Name is the key by which this org will be referenced in channel
@@ -223,7 +223,7 @@ Organizations:
         ID: org1MSP
 
         # MSPDir is the filesystem path which contains the MSP configuration.
-        MSPDir: /data/orgs/org1/msp
+        MSPDir: ${DATA}/orgs/org1/msp
 
         # AnchorPeers defines the location of peers which can be used for
         # cross-org gossip communication. Note, this value is only encoded in
@@ -242,7 +242,7 @@ Organizations:
         ID: org2MSP
 
         # MSPDir is the filesystem path which contains the MSP configuration.
-        MSPDir: /data/orgs/org2/msp
+        MSPDir: ${DATA}/orgs/org2/msp
 
         # AnchorPeers defines the location of peers which can be used for
         # cross-org gossip communication. Note, this value is only encoded in
