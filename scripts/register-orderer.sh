@@ -456,7 +456,7 @@ BLOCKS_PER_THREAD=10000
 RECEIVERS=1000
 " > $DATA/node.config
 cat $DATA/orgs/org0/admin/msp/keystore/$KEYFILE > $DATA/key.pem
-cat $DATA/orgs/orgs/org0/admin/msp/signcerts/$SIGN_FILE > $DATA/peer.pem
+cat $DATA/orgs/org0/admin/msp/signcerts/$SIGN_FILE > $DATA/peer.pem
 
 }
 
