@@ -94,7 +94,7 @@ mkdir -p $DATA/$PEER_NAME
 env | grep CORE > $DATA/$PEER_NAME/core.config
 env | grep CORE
 
-cp -R $FABRIC_CA_CLIENT_HOME/* $DATA/$PEER_NAME/
+#cp -R $FABRIC_CA_CLIENT_HOME/* $DATA/$PEER_NAME/
 
 if [ -f ./data/logs/${PEER_NAME}.out ] ; then
 rm ./data/logs/${PEER_NAME_NAME}.out
