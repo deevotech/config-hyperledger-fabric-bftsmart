@@ -16,7 +16,7 @@ if [ -z "${c}" ] ; then
 fi
 echo "create channel"
 
-DATA=/hyperledgerconfig/data
+DATA=$HOME/hyperledgerconfig/data
 export FABRIC_CFG_PATH=$DATA/
 PEER_ORGS="org1 org2"
 NUM_PEERS=2
