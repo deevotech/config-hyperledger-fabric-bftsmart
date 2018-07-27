@@ -52,7 +52,6 @@ export FABRIC_CA_CLIENT_HOME=$HOME/orderer
 export FABRIC_CA_CLIENT_TLS_CERTFILES=${DATA}/${ORG}-ca-cert.pem
 export ENROLLMENT_URL=https://${ORDERER_HOST}:${ORDERER_HOST}pw@rca-${ORG}:7054
 export ORDERER_HOME=${DATA}/orderer
-export ORDERER_GENERAL_TLS_CERTIFICATE=${DATA}/orderer/tls/server.crt
 export ORDERER_DEBUG_BROADCASTTRACEDIR=$DATA/logs
 export ORG=${g}
 export ORG_ADMIN_CERT=${DATA}/orgs/org0/msp/admincerts/cert.pem
@@ -66,10 +65,13 @@ mkdir -p data/logs
 if [ -f ./data/logs/orderer.out ] ; then
 rm ./data/logs/orderer.out
 fi
-export ENROLLMENT_URL=https://orderer${n}-${ORG}:orderer${n}-${ORG}pw@rca-${ORG}:7054
+
 mkdir -p /tmp/tls
 mkdir -p /tmp/tls/signcerts
 mkdir -p /tmp/tls/keystore
+if [ -d /tmp/tls/keystore ] ; then
+	rm -rf /tmp/tls/keystore/*
+fi
 # Enroll to get orderer's TLS cert (using the "tls" profile)
 $GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-client enroll -d --enrollment.profile tls -u $ENROLLMENT_URL -M /tmp/tls --csr.hosts $ORDERER_HOST
 
