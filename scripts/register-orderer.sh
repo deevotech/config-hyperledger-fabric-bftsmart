@@ -25,7 +25,7 @@ shift $((OPTIND-1))
 if [ -z "${g}" ] ; then
     usage
 fi
-source $(dirname "$0")/env.sh
+
 ORG=${g}
 
 function main {
