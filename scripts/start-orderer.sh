@@ -32,7 +32,7 @@ ORG=${g}
 mkdir -p ${DATA}
 initOrdererVars $ORG ${n}
 export ORDERER_GENERAL_LOCALMSPDIR=${DATA}/orgs/msp
-export ORDERER_GENERAL_GENESISFILE=${DATA}/orgs/genesis.block
+export ORDERER_GENERAL_GENESISFILE=${DATA}/genesis.block
 export ORDERER_GENERAL_LOCALMSPID=${ORG}MSP
 export ORDERER_GENERAL_TLS_ROOTCAS=[${DATA}/${ORG}-ca-cert.pem]
 export ORDERER_GENERAL_TLS_CLIENTROOTCAS=[${DATA}/${ORG}-ca-cert.pem]
