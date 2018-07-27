@@ -39,9 +39,23 @@ export CORE_PEER_TLS_CLIENTROOTCAS_FILES=$DATA/${ORG}-ca-cert.pem
 export CORE_PEER_TLS_CLIENTCERT_FILE=$DATA/${PEER_NAME}/tls/peer${n}-${ORG}-client.crt
 export CORE_PEER_TLS_CLIENTKEY_FILE=$DATA/${PEER_NAME}/tls/peer${n}-${ORG}-client.key
 export FABRIC_CA_CLIENT_TLS_CERTFILES=$DATA/${ORG}-ca-cert.pem
-mkdir -p $DATA/${PEER_NAME}
-mkdir -p $DATA/${PEER_NAME}
+export CORE_PEER_GOSSIP_SKIPHANDSHAKE=true
+
+export CORE_PEER_TLS_ROOTCERT_FILE=${DATA}/${ORG}-ca-cert.pem
+export CORE_PEER_TLS_KEY_FILE=${DATA}/peer${n}-${ORG}/tls/server.key
+export CORE_PEER_GOSSIP_ORGLEADER=false
+export CORE_PEER_LOCALMSPID=${ORG}MSP
+export CORE_PEER_TLS_ENABLED=true
+export CORE_PEER_TLS_CLIENTAUTHREQUIRED=true
+export CORE_PEER_ID=${PEER_NAME}
+export CORE_LOGGING_LEVEL=DEBUG
+export CORE_PEER_GOSSIP_EXTERNALENDPOINT=${PEER_NAME}:7051
+export CORE_PEER_ADDRESS=${PEER_NAME}:7051
+export CORE_PEER_GOSSIP_USELEADERELECTION=true
+export FABRIC_CFG_PATH=${DATA}/
 export CORE_PEER_MSPCONFIGPATH=$DATA/$PEER_NAME/msp
+mkdir -p $DATA/${PEER_NAME}
+mkdir -p $DATA/${PEER_NAME}
 
 # Although a peer may use the same TLS key and certificate file for both inbound and outbound TLS,
 # we generate a different key and certificate for inbound and outbound TLS simply to show that it is permissible
