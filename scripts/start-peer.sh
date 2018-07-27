@@ -47,6 +47,13 @@ cp /tmp/tls/signcerts/* $CORE_PEER_TLS_CERT_FILE
 cp /tmp/tls/keystore/* $CORE_PEER_TLS_KEY_FILE
 rm -rf /tmp/tls
 
+export CORE_PEER_TLS_CLIENTROOTCAS_FILES=$DATA/${ORG}-ca-chain.pem
+export CORE_PEER_TLS_CLIENTCERT_FILE=$DATA/tls/peer${n}-${ORG}-client.crt
+export CORE_PEER_TLS_CLIENTKEY_FILE=$DATA/tls/peern{n}-${ORG}-client.key
+mkdir -p $DATA/peer
+mkdir -p $DATA/peer/$PEER_NAME
+export CORE_PEER_MSPCONFIGPATH=$DATA/peer/$PEER_NAME/msp
+
 # Generate client TLS cert and key pair for the peer
 genClientTLSCert $PEER_NAME $CORE_PEER_TLS_CLIENTCERT_FILE $CORE_PEER_TLS_CLIENTKEY_FILE
 
