@@ -49,7 +49,7 @@ rm -rf /tmp/tls
 
 export CORE_PEER_TLS_CLIENTROOTCAS_FILES=$DATA/${ORG}-ca-chain.pem
 export CORE_PEER_TLS_CLIENTCERT_FILE=$DATA/tls/peer${n}-${ORG}-client.crt
-export CORE_PEER_TLS_CLIENTKEY_FILE=$DATA/tls/peern{n}-${ORG}-client.key
+export CORE_PEER_TLS_CLIENTKEY_FILE=$DATA/tls/peer${n}-${ORG}-client.key
 mkdir -p $DATA/peer
 mkdir -p $DATA/peer/$PEER_NAME
 export CORE_PEER_MSPCONFIGPATH=$DATA/peer/$PEER_NAME/msp
