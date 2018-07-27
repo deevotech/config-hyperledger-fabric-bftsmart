@@ -39,6 +39,7 @@ mkdir -p /tmp/tls
 # Generate server TLS cert and key pair for the peer
 $GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-client enroll -d --enrollment.profile tls -u $ENROLLMENT_URL -M /tmp/tls --csr.hosts $PEER_HOST
 
+export PEER_HOME=${DATA}/${PEER_NAME}
 # Copy the TLS key and cert to the appropriate place
 TLSDIR=$PEER_HOME/tls
 mkdir -p $TLSDIR
