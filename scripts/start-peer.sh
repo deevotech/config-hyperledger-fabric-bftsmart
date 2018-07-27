@@ -32,6 +32,15 @@ ORG=${g}
 mkdir -p ${DATA}
 initPeerVars $ORG ${n}
 export ENROLLMENT_URL=https://peer${n}-${ORG}:peer${n}-${ORG}pw@rca-${ORG}:7054
+export PEER_HOME=${DATA}/${PEER_NAME}
+export CORE_PEER_TLS_CERT_FILE=${DATA}/${PEER_NAME}/tls/server.crt
+export CORE_PEER_TLS_KEY_FILE=${DATA}/${PEER_NAME}/tls/server.key
+export CORE_PEER_TLS_CLIENTROOTCAS_FILES=$DATA/${ORG}-ca-chain.pem
+export CORE_PEER_TLS_CLIENTCERT_FILE=$DATA/${PEER_NAME}/tls/peer${n}-${ORG}-client.crt
+export CORE_PEER_TLS_CLIENTKEY_FILE=$DATA/${PEER_NAME}/tls/peer${n}-${ORG}-client.key
+mkdir -p $DATA/${PEER_NAME}
+mkdir -p $DATA/${PEER_NAME}
+export CORE_PEER_MSPCONFIGPATH=$DATA/$PEER_NAME/msp
 
 # Although a peer may use the same TLS key and certificate file for both inbound and outbound TLS,
 # we generate a different key and certificate for inbound and outbound TLS simply to show that it is permissible
@@ -41,22 +50,13 @@ echo ${ENROLLMENT_URL}
 echo ${PEER_HOST}
 $GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-client enroll -d --enrollment.profile tls -u $ENROLLMENT_URL -M /tmp/tls --csr.hosts $PEER_HOST
 
-export PEER_HOME=${DATA}/${PEER_NAME}
-export CORE_PEER_TLS_CERT_FILE=${DATA}/${PEER_NAME}/tls/server.crt
-export CORE_PEER_TLS_KEY_FILE=${DATA}/${PEER_NAME}/tls/server.key
+
 # Copy the TLS key and cert to the appropriate place
 TLSDIR=$PEER_HOME/tls
 mkdir -p $TLSDIR
 cp /tmp/tls/signcerts/* $CORE_PEER_TLS_CERT_FILE
 cp /tmp/tls/keystore/* $CORE_PEER_TLS_KEY_FILE
 rm -rf /tmp/tls
-
-export CORE_PEER_TLS_CLIENTROOTCAS_FILES=$DATA/${ORG}-ca-chain.pem
-export CORE_PEER_TLS_CLIENTCERT_FILE=$DATA/${PEER_NAME}/tls/peer${n}-${ORG}-client.crt
-export CORE_PEER_TLS_CLIENTKEY_FILE=$DATA/${PEER_NAME}/tls/peer${n}-${ORG}-client.key
-mkdir -p $DATA/${PEER_NAME}
-mkdir -p $DATA/${PEER_NAME}
-export CORE_PEER_MSPCONFIGPATH=$DATA/$PEER_NAME/msp
 
 # Generate client TLS cert and key pair for the peer
 genClientTLSCert $PEER_NAME $CORE_PEER_TLS_CLIENTCERT_FILE $CORE_PEER_TLS_CLIENTKEY_FILE

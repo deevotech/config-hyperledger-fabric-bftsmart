@@ -33,7 +33,7 @@ function main {
    log "Beginning building channel artifacts ..."
    registerIdentities
    getCACerts
-   makeConfigTxYaml
+   #makeConfigTxYaml
    #generateChannelArtifacts
    log "Finished building channel artifacts"
    #generateBftConfig
