@@ -31,16 +31,15 @@ source $(dirname "$0")/env.sh
 ORG=${g}
 mkdir -p ${DATA}
 initOrdererVars $ORG ${n}
-
+mkdir -p /tmp/tls
+mkdir -p /tmp/tls/signcerts
+mkdir -p /tmp/tls/keystore
 # Enroll to get orderer's TLS cert (using the "tls" profile)
 $GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-client enroll -d --enrollment.profile tls -u $ENROLLMENT_URL -M /tmp/tls --csr.hosts $ORDERER_HOST
 
 # Copy the TLS key and cert to the appropriate place
 TLSDIR=$ORDERER_HOME/tls
 mkdir -p $TLSDIR
-mkdir -p /tmp/tls
-mkdir -p /tmp/signcets
-mkdir -p /tmp/keystore
 cp /tmp/tls/keystore/* $ORDERER_GENERAL_TLS_PRIVATEKEY
 cp /tmp/tls/signcerts/* $ORDERER_GENERAL_TLS_CERTIFICATE
 rm -rf /tmp/tls

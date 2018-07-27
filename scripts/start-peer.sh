@@ -34,16 +34,15 @@ initPeerVars $ORG ${n}
 
 # Although a peer may use the same TLS key and certificate file for both inbound and outbound TLS,
 # we generate a different key and certificate for inbound and outbound TLS simply to show that it is permissible
-
+mkdir -p /tmp/tls
+mkdir -p /tmp/tls/signcerts
+mkdir -p /tmp/tls/keystore
 # Generate server TLS cert and key pair for the peer
 $GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-client enroll -d --enrollment.profile tls -u $ENROLLMENT_URL -M /tmp/tls --csr.hosts $PEER_HOST
 
 # Copy the TLS key and cert to the appropriate place
 TLSDIR=$PEER_HOME/tls
 mkdir -p $TLSDIR
-mkdir -p /tmp/tls
-mkdir -p /tmp/signcets
-mkdir -p /tmp/keystore
 cp /tmp/tls/signcerts/* $CORE_PEER_TLS_CERT_FILE
 cp /tmp/tls/keystore/* $CORE_PEER_TLS_KEY_FILE
 rm -rf /tmp/tls
