@@ -46,7 +46,7 @@ export CORE_PEER_MSPCONFIGPATH=$DATA/$PEER_NAME/msp
 # Although a peer may use the same TLS key and certificate file for both inbound and outbound TLS,
 # we generate a different key and certificate for inbound and outbound TLS simply to show that it is permissible
 mkdir -p /tmp/tls
-if [ -f /tmp/tls/keystore/ ] ; then
+if [ -d /tmp/tls/keystore/ ] ; then
 	rm -rf /tmp/tls/keystore/*
 fi
 # Generate server TLS cert and key pair for the peer
