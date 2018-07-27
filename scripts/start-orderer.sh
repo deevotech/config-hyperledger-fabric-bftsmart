@@ -57,39 +57,6 @@ export ORG=${g}
 export ORG_ADMIN_CERT=${DATA}/orgs/org0/msp/admincerts/cert.pem
 
 
-mkdir -p ${DATA}/orderer
-mkdir -p ${DATA}/orderer/tls
-rm -rf /var/hyperledger/production/*
-mkdir -p data
-mkdir -p data/logs
-if [ -f ./data/logs/orderer.out ] ; then
-rm ./data/logs/orderer.out
-fi
-
-mkdir -p /tmp/tls
-mkdir -p /tmp/tls/signcerts
-mkdir -p /tmp/tls/keystore
-if [ -d /tmp/tls/keystore ] ; then
-	rm -rf /tmp/tls/keystore/*
-fi
-# Enroll to get orderer's TLS cert (using the "tls" profile)
-$GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-client enroll -d --enrollment.profile tls -u $ENROLLMENT_URL -M /tmp/tls --csr.hosts $ORDERER_HOST
-
-# Copy the TLS key and cert to the appropriate place
-TLSDIR=$ORDERER_HOME/tls
-mkdir -p $TLSDIR
-cp /tmp/tls/keystore/* $ORDERER_GENERAL_TLS_PRIVATEKEY
-cp /tmp/tls/signcerts/* $ORDERER_GENERAL_TLS_CERTIFICATE
-rm -rf /tmp/tls
-
-# Enroll again to get the orderer's enrollment certificate (default profile)
-$GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-client enroll -d -u $ENROLLMENT_URL -M $ORDERER_GENERAL_LOCALMSPDIR
-
-# Finish setting up the local MSP for the orderer
-finishMSPSetup $ORDERER_GENERAL_LOCALMSPDIR
-copyAdminCert $ORDERER_GENERAL_LOCALMSPDIR
-mkdir -p $DATA/orderer
-
 env | grep ORDERER
 rm -rf /var/hyperledger/production/*
 mkdir -p data
