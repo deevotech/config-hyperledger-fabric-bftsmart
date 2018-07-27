@@ -56,9 +56,12 @@ export FABRIC_CFG_PATH=${DATA}/
 export CORE_PEER_MSPCONFIGPATH=$DATA/$PEER_NAME/msp
 mkdir -p $DATA/${PEER_NAME}
 mkdir -p $DATA/${PEER_NAME}
+if [ -d ${CORE_PEER_MSPCONFIGPATH}/keystore/] ; then
+	rm -rf ${CORE_PEER_MSPCONFIGPATH}/keystore/*
+fi
 
 # Although a peer may use the same TLS key and certificate file for both inbound and outbound TLS,
-# we generate a different key and certificate for inbound and outbound TLS simply to show that it is permissible
+# we generate a different key and certificate for inbound and outbound TLS simply to show that it is perssible
 mkdir -p /tmp/tls
 if [ -d /tmp/tls/keystore/ ] ; then
 	rm -rf /tmp/tls/keystore/*
