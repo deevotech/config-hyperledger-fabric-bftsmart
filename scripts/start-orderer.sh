@@ -46,8 +46,18 @@ export ORDERER_GENERAL_GENESISMETHOD=file
 export ORDERER_GENERAL_TLS_CERTIFICATE=${DATA}/orderer/tls/server.crt
 export ORDERER_GENERAL_TLS_ENABLED=true
 export ORDERER_HOME=${DATA}/orderer
-export FABRIC_CFG_PATH=${DATA}
+export FABRIC_CFG_PATH=${DATA}/
 export ORDERER_FILELEDGER_LOCATION=/var/hyperledger/production/orderer
+export FABRIC_CA_CLIENT_HOME=$HOME/orderer
+export FABRIC_CA_CLIENT_TLS_CERTFILES=${DATA}/${DATA}-ca-chain.pem
+export ENROLLMENT_URL=https://${ORDERER_HOST}:${ORDERER_HOST}pw@rca-${ORG}:7054
+export ORDERER_HOME=${DATA}/orderer
+export ORDERER_GENERAL_TLS_CERTIFICATE=${DATA}/orderer/tls/server.crt
+export ORDERER_DEBUG_BROADCASTTRACEDIR=$DATA/logs
+export ORG=${g}
+export ORG_ADMIN_CERT=${DATA}/orgs/org0/msp/admincerts/cert.pem
+
+
 mkdir -p ${DATA}/orderer
 mkdir -p ${DATA}/orderer/tls
 rm -rf /var/hyperledger/production/*
