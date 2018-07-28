@@ -68,7 +68,7 @@ if [ -f ./data/logs/${PEER_NAME}.out ] ; then
 rm ./data/logs/${PEER_NAME}.out
 fi
 if [ -d /var/hyperledger/production ] ; then
-rm -rf /var/hyperledger/production*
+rm -rf /var/hyperledger/production/*
 fi
 chaincodeImages=`docker images | grep "^dev-peer" | awk '{print $3}'`
 if [ "$chaincodeImages" != "" ]; then
