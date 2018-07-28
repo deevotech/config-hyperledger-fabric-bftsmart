@@ -26,27 +26,27 @@ if [ -z "${g}" ] || [ -z "${n}" ] ; then
     usage
 fi
 ORG=${g}
-mkdir -p ${DATA}
+DATA = /home/ubuntu/hyperledgerconfig/data
 export CORE_PEER_GOSSIP_SKIPHANDSHAKE=true
-export CORE_PEER_TLS_CLIENTCERT_FILE=/hyperledgerconfig/data/tls/peer${n}-${ORG}-client.crt
-export CORE_PEER_TLS_ROOTCERT_FILE=/hyperledgerconfig/data/${ORG}-ca-cert.pem
-export CORE_PEER_TLS_KEY_FILE=/hyperledgerconfig/data/peer${n}-${ORG}/tls/server.key
+export CORE_PEER_TLS_CLIENTCERT_FILE=${DATA}/tls/peer${n}-${ORG}-client.crt
+export CORE_PEER_TLS_ROOTCERT_FILE=${DATA}/data/${ORG}-ca-cert.pem
+export CORE_PEER_TLS_KEY_FILE=${DATA}/peer${n}-${ORG}/tls/server.key
 export CORE_PEER_GOSSIP_ORGLEADER=false
 export CORE_PEER_LOCALMSPID=${ORG}MSP
 #export CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-export CORE_PEER_TLS_CERT_FILE=/home/ubuntu/hyperledgerconfig/data/peer${n}-${ORG}/tls/server.crt
-export CORE_PEER_TLS_CLIENTROOTCAS_FILES=/home/ubuntu/hyperledgerconfig/data/${ORG}-ca-cert.pem
-export CORE_PEER_TLS_CLIENTKEY_FILE=/home/ubuntu/hyperledgerconfig/data/tls/peer${n}-${ORG}-client.key
+export CORE_PEER_TLS_CERT_FILE=${DATA}/peer${n}-${ORG}/tls/server.crt
+export CORE_PEER_TLS_CLIENTROOTCAS_FILES=${DATA}/${ORG}-ca-cert.pem
+export CORE_PEER_TLS_CLIENTKEY_FILE=${DATA}/tls/peer${n}-${ORG}-client.key
 export CORE_PEER_TLS_ENABLED=true
 export CORE_PEER_TLS_CLIENTAUTHREQUIRED=true
-export CORE_PEER_MSPCONFIGPATH=/hyperledgerconfig/data/peer${n}-${ORG}/msp
+export CORE_PEER_MSPCONFIGPATH=${DATA}/peer${n}-${ORG}/msp
 #export CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=bftsmartnetwork_fabric-ca-orderer-bftsmart
 export CORE_PEER_ID=peer${n}-${ORG}
 export CORE_LOGGING_LEVEL=DEBUG
 export CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer${n}-${ORG}:7051
 export CORE_PEER_ADDRESS=peer${n}-${ORG}:7051
 export CORE_PEER_GOSSIP_USELEADERELECTION=true
-export FABRIC_CFG_PATH=/home/ubuntu/hyperledgerconfig/data/
+export FABRIC_CFG_PATH=${DATA}/
 export CORE_PEER_ADDRESSAUTODETECT=true
 if [ ${n} -gt 1 ] ; then
 export CORE_PEER_GOSSIP_BOOTSTRAP=peer${n}-${ORG}:7051
