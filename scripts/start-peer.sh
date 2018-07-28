@@ -26,7 +26,7 @@ if [ -z "${g}" ] || [ -z "${n}" ] ; then
     usage
 fi
 ORG=${g}
-DATA = /home/ubuntu/hyperledgerconfig/data
+DATA=/home/ubuntu/hyperledgerconfig/data
 export CORE_PEER_GOSSIP_SKIPHANDSHAKE=true
 export CORE_PEER_TLS_CLIENTCERT_FILE=${DATA}/tls/peer${n}-${ORG}-client.crt
 export CORE_PEER_TLS_ROOTCERT_FILE=${DATA}/data/${ORG}-ca-cert.pem
