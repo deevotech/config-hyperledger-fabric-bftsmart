@@ -47,7 +47,7 @@ export CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer${n}-${ORG}:7051
 export CORE_PEER_ADDRESS=peer${n}-${ORG}:7051
 export CORE_PEER_GOSSIP_USELEADERELECTION=true
 export FABRIC_CFG_PATH=${DATA}/
-export CORE_PEER_ADDRESSAUTODETECT=false
+export CORE_PEER_ADDRESSAUTODETECT=true
 if [ ${n} -gt 1 ] ; then
 export CORE_PEER_GOSSIP_BOOTSTRAP=peer${n}-${ORG}:7051
 fi
@@ -71,4 +71,3 @@ fi
 mkdir -p data
 mkdir -p data/logs
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer node start > data/logs/${CORE_PEER_ID}.out 2>&1 &
-echo "success see in data/logs/peer1-org1.out"
