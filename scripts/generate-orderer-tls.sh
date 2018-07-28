@@ -31,7 +31,7 @@ source $(dirname "$0")/env.sh
 ORG=${g}
 mkdir -p ${DATA}
 initOrdererVars $ORG ${n}
-export ORDERER_GENERAL_LOCALMSPDIR=${DATA}/orgs/${ORG}/msp
+export ORDERER_GENERAL_LOCALMSPDIR=${DATA}/orderer
 export ORDERER_GENERAL_GENESISFILE=${DATA}/genesis.block
 export ORDERER_GENERAL_LOCALMSPID=${ORG}MSP
 export ORDERER_GENERAL_TLS_ROOTCAS=[${DATA}/${ORG}-ca-cert.pem]
@@ -98,7 +98,7 @@ if [ -f ./data/logs/orderer.out ] ; then
 rm ./data/logs/orderer.out
 fi
 cp -R ${FABRIC_CA_CLIENT_HOME}/* ${DATA}/orderer
-cp -R ${ORDERER_GENERAL_LOCALMSPDIR} ${DATA}/orderer
+#cp -R ${ORDERER_GENERAL_LOCALMSPDIR} ${DATA}/orderer
 
 echo "done see /data/logs/orderer"
 
