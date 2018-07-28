@@ -49,7 +49,7 @@ export CORE_PEER_GOSSIP_USELEADERELECTION=true
 export FABRIC_CFG_PATH=${DATA}/
 export CORE_PEER_ADDRESSAUTODETECT=true
 if [ ${n} -gt 1 ] ; then
-export CORE_PEER_GOSSIP_BOOTSTRAP=peer${n}-${ORG}:7051
+	export CORE_PEER_GOSSIP_BOOTSTRAP=peer1-${ORG}:7051
 fi
 
 
