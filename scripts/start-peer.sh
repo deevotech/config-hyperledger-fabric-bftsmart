@@ -28,7 +28,7 @@ fi
 ORG=${g}
 DATA=/home/ubuntu/hyperledgerconfig/data
 export CORE_PEER_GOSSIP_SKIPHANDSHAKE=true
-export CORE_PEER_TLS_CLIENTCERT_FILE=${DATA}/tls/peer${n}-${ORG}-client.crt
+export CORE_PEER_TLS_CLIENTCERT_FILE=${DATA}/peer${n}-${ORG}/tls/peer${n}-${ORG}-client.crt
 export CORE_PEER_TLS_ROOTCERT_FILE=${DATA}/${ORG}-ca-cert.pem
 export CORE_PEER_TLS_KEY_FILE=${DATA}/peer${n}-${ORG}/tls/server.key
 export CORE_PEER_GOSSIP_ORGLEADER=false
@@ -36,7 +36,7 @@ export CORE_PEER_LOCALMSPID=${ORG}MSP
 #export CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
 export CORE_PEER_TLS_CERT_FILE=${DATA}/peer${n}-${ORG}/tls/server.crt
 export CORE_PEER_TLS_CLIENTROOTCAS_FILES=${DATA}/${ORG}-ca-cert.pem
-export CORE_PEER_TLS_CLIENTKEY_FILE=${DATA}/tls/peer${n}-${ORG}-client.key
+export CORE_PEER_TLS_CLIENTKEY_FILE=${DATA}/peer${n}-${ORG}/tls/peer${n}-${ORG}-client.key
 export CORE_PEER_TLS_ENABLED=true
 export CORE_PEER_TLS_CLIENTAUTHREQUIRED=true
 export CORE_PEER_MSPCONFIGPATH=${DATA}/peer${n}-${ORG}/msp
