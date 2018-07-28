@@ -70,5 +70,5 @@ if [ "$chaincodeImages" != "" ]; then
 fi
 mkdir -p data
 mkdir -p data/logs
-cp ../config/peer${n}-${ORG}.yaml ${DATA}/core.yaml
+cp ../config/core-peer${n}-${ORG}.yaml ${DATA}/core.yaml
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer node start > data/logs/${CORE_PEER_ID}.out 2>&1 &
