@@ -30,13 +30,13 @@ fi
 source $(dirname "$0")/env.sh
 ORG=${g}
 mkdir -p ${DATA}
-initOrdererVars $ORG ${n}
+#initOrdererVars $ORG ${n}
 export ORDERER_GENERAL_LOCALMSPDIR=${DATA}/orderer/msp
 export ORDERER_GENERAL_GENESISFILE=${DATA}/genesis.block
-export ORDERER_GENERAL_LOCALMSPID=${ORG}MSP
-export ORDERER_GENERAL_TLS_ROOTCAS=[${DATA}/${ORG}-ca-cert.pem]
-export ORDERER_GENERAL_TLS_CLIENTROOTCAS=[${DATA}/${ORG}-ca-cert.pem]
-export ORDERER_HOST=orderer${n}-${ORG}
+export ORDERER_GENERAL_LOCALMSPID=org0MSP
+export ORDERER_GENERAL_TLS_ROOTCAS=[${DATA}/org0-ca-cert.pem]
+export ORDERER_GENERAL_TLS_CLIENTROOTCAS=[${DATA}/org0-ca-cert.pem]
+export ORDERER_HOST=orderer1-org0
 export ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
 export ORDERER_GENERAL_TLS_PRIVATEKEY=${DATA}/orderer/tls/server.key
 export ORDERER_GENERAL_TLS_CLIENTAUTHREQUIRED=true
@@ -48,13 +48,6 @@ export ORDERER_GENERAL_TLS_ENABLED=true
 export ORDERER_HOME=${DATA}/orderer
 export FABRIC_CFG_PATH=${DATA}/
 export ORDERER_FILELEDGER_LOCATION=/var/hyperledger/production/orderer
-export FABRIC_CA_CLIENT_HOME=$HOME/orderer
-export FABRIC_CA_CLIENT_TLS_CERTFILES=${DATA}/${ORG}-ca-cert.pem
-export ENROLLMENT_URL=https://${ORDERER_HOST}:${ORDERER_HOST}pw@rca-${ORG}:7054
-export ORDERER_HOME=${DATA}/orderer
-export ORDERER_DEBUG_BROADCASTTRACEDIR=$DATA/logs
-export ORG=${g}
-export ORG_ADMIN_CERT=${DATA}/orgs/org0/msp/admincerts/cert.pem
 
 
 env | grep ORDERER
