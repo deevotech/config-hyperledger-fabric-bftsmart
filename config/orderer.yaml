@@ -80,7 +80,7 @@ General:
     # LocalMSPDir is where to find the private crypto material needed by the
     # orderer. It is set relative here as a default for dev environments but
     # should be changed to the real location in production.
-    LocalMSPDir: /homeu/ubuntu/hyperledgerconfig/data/orderer/msp
+    LocalMSPDir: /home/ubuntu/hyperledgerconfig/data/orderer/msp
 
     # LocalMSPID is the identity to register the local MSP material with the MSP
     # manager. IMPORTANT: The local MSP ID of an orderer needs to match the MSP

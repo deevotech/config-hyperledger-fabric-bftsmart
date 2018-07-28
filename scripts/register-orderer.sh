@@ -441,13 +441,13 @@ echo "#The ID of the membership service provider (MSP)
 MSPID=org0MSP
 
 #Certificate of the node, compliant to Fabric's MSP guidelines
-CERTIFICATE=/opt/gopath/src/github.com/hyperledger/hyperledger/config/peer.pem
+CERTIFICATE=/home/ubuntu/hyperledgerconfig/data/peer.pem
 
 #Private key of the node, compliant to Fabric's MSP guidelines
-PRIVKEY=/opt/gopath/src/github.com/hyperledger/hyperledger/config/key.pem
+PRIVKEY=/home/ubuntu/hyperledgerconfig/data/key.pem
 
 #Number of signer/sending threads in the pool
-PARELLELISM=10
+PARELLELISM=20
 
 #Maximum number of blocks to submit to each signer/sending thread
 BLOCKS_PER_THREAD=10000
