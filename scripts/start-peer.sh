@@ -77,5 +77,5 @@ if [ "$chaincodeImages" != "" ]; then
 fi
 mkdir -p data
 mkdir -p data/logs
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer node start > data/logs/${HOST_NAME}.out 2>&1 &
+$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer node start > data/logs/${PEER_NAME}.out 2>&1 &
 echo "success see in data/logs/peer1-org1.out"
