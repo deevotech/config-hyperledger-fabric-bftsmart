@@ -97,6 +97,7 @@ mkdir -p data/logs
 if [ -f ./data/logs/orderer.out ] ; then
 rm ./data/logs/orderer.out
 fi
+cp -R ${FABRIC_CA_CLIENT_HOME}/* ${DATA}/orderer
 
 echo "done see /data/logs/orderer"
 
