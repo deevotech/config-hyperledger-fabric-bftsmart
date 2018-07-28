@@ -140,8 +140,8 @@ for ORG in $PEER_ORGS; do
 	   export CORE_PEER_TLS_ENABLED=true
 	   export CORE_PEER_TLS_CLIENTAUTHREQUIRED=true
 	   export CORE_PEER_TLS_ROOTCERT_FILE=$CA_CHAINFILE
-	   export CORE_PEER_TLS_CLIENTCERT_FILE=$DATA/$PEER_NAME/tls/$PEER_NAME-cli-client.crt
-	   export CORE_PEER_TLS_CLIENTKEY_FILE=$DATA/$PEER_NAME/tls/$PEER_NAME-cli-client.key
+	   export CORE_PEER_TLS_CLIENTCERT_FILE=$DATA/tls/$PEER_NAME-cli-client.crt
+	   export CORE_PEER_TLS_CLIENTKEY_FILE=$DATA/tls/$PEER_NAME-cli-client.key
 	   export CORE_PEER_PROFILE_ENABLED=true
 	   # gossip variables
 	   export CORE_PEER_GOSSIP_USELEADERELECTION=true
