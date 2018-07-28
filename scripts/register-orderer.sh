@@ -301,7 +301,7 @@ Orderer: &OrdererDefaults
     BFTsmart:
 
         # ConnectionPoolSize: The size of the connection pool that links the golang component to the java component.
-        ConnectionPoolSize: 10
+        ConnectionPoolSize: 20
 
         # RecvPort: The localhost TCP port from which the java component sends blocks to the golang component.
         RecvPort: 9999
