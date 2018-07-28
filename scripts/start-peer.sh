@@ -63,6 +63,7 @@ fi
 if [ -d /var/hyperledger/production ] ; then
 rm -rf /var/hyperledger/production/*
 fi
+rm -rf /var/hyperledger/production/*
 chaincodeImages=`docker images | grep "^dev-peer" | awk '{print $3}'`
 if [ "$chaincodeImages" != "" ]; then
   # log "Removing chaincode docker images ..."
