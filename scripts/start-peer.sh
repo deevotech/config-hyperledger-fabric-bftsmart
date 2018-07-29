@@ -51,7 +51,7 @@ export CORE_PEER_ADDRESSAUTODETECT=true
 fi
 
 export FABRIC_CFG_PATH=${DATA}/
-cp ../core-${PEER_NAME}.yaml ${DATA}/core.yaml
+cp ../config/core-${PEER_NAME}.yaml ${DATA}/core.yaml
 mkdir -p data
 mkdir -p data/logs
 if [ -f ./data/logs/${PEER_NAME}.out ] ; then
