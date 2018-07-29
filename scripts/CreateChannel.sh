@@ -75,7 +75,7 @@ $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer channel create --loggin
 echo "ALL peers join the channel"
 for ORG in $PEER_ORGS; do
      COUNT=1
-     #while [[ "$COUNT" -le $NUM_PEERS ]]; do
+     while [[ "$COUNT" -le $NUM_PEERS ]]; do
          #initPeerVars $ORG $COUNT
          PEER_HOST=peer${COUNT}-${ORG}
          #PEER_HOST=peer1-${ORG}
@@ -117,8 +117,8 @@ for ORG in $PEER_ORGS; do
 		      C=$((C+1))
 		      #sleep 2
 		   done
-         #COUNT=$((COUNT+1))
-     #done
+         COUNT=$((COUNT+1))
+     done
 done
 
 #sleep 5 
