@@ -19,7 +19,7 @@ if [ -z "${c}" ] || [ -z "${n}" ] ; then
 fi
 echo "create channel channelID ${c} chaincodeName ${n} "
 
-DATA=/home/ubuntu/hyperledgerconfig/data
+DATA=/hyperledgerconfig/data
 export FABRIC_CFG_PATH=$DATA/
 PEER_ORGS="org1 org2"
 NUM_PEERS=2
@@ -70,7 +70,7 @@ function chaincodeQuery {
 function installChaincode {
    #switchToAdminIdentity
    echo "Installing chaincode on $PEER_HOST ..."
-   $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode install -n mycc -v 1.0 -p github.com/hyperledger/fabric-samples/chaincode/abac/go
+   $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode install -n ${n} -v 1.0 -p github.com/hyperledger/fabric-samples/chaincode/abac/go
 }
 function fetchConfigBlock {
    echo "Fetching the configuration block of the channel '$CHANNEL_NAME'"
