@@ -19,11 +19,10 @@ General:
     #  - json: A simple file ledger that writes blocks to disk in JSON format.
     # Only one production ledger type is provided:
     #  - file: A production file-based ledger.
-    LedgerType: file
+    LedgerType: ram
 
     # Listen address: The IP on which to bind to listen.
-    #ListenAddress: 172.31.24.218
-    ListenAddress: 127.0.0.1
+    ListenAddress: 0.0.0.0
 
     # Listen port: The port on which to bind to listen.
     ListenPort: 7050
@@ -70,32 +69,29 @@ General:
     # descriptions of the available profiles. Ignored if GenesisMethod is set to
     # "file".
     GenesisProfile: SampleSingleMSPBFTsmart
-    #GenesisProfile: SampleSingleMSPBFTsmartV1_1
 
     # Genesis file: The file containing the genesis block to use when
     # initializing the orderer system channel and GenesisMethod is set to
     # "file". Ignored if GenesisMethod is set to "provisional".
-    GenesisFile: ./genesis.block
+    GenesisFile: ./genesisblock
 
     # LocalMSPDir is where to find the private crypto material needed by the
     # orderer. It is set relative here as a default for dev environments but
     # should be changed to the real location in production.
-    LocalMSPDir: /home/ubuntu/hyperledgerconfig/data/orderer/msp
+    LocalMSPDir: msp
 
     # LocalMSPID is the identity to register the local MSP material with the MSP
     # manager. IMPORTANT: The local MSP ID of an orderer needs to match the MSP
     # ID of one of the organizations defined in the orderer system channel's
     # /Channel/Orderer configuration. The sample organization defined in the
     # sample configuration provided has an MSP ID of "DEFAULT".
-    LocalMSPID: org0MSP
+    LocalMSPID: DEFAULT
 
     # Enable an HTTP service for Go "pprof" profiling as documented at:
     # https://golang.org/pkg/net/http/pprof
     Profile:
         Enabled: false
         Address: 0.0.0.0:6060
-        #Enabled: true
-        #Address: 13.229.209.119:6060
 
     # BCCSP configures the blockchain crypto service providers.
     BCCSP:
@@ -263,7 +259,7 @@ Kafka:
 BFTsmart:
 
     # ConnectionPoolSize: The size of the connection pool that links the golang component to the java component.
-    ConnectionPoolSize: 20
+    ConnectionPoolSize: 10
 
     # RecvPort: The localhost TCP port from which the java component sends blocks to the golang component.
     RecvPort: 9999

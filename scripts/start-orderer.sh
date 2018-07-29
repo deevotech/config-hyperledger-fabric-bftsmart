@@ -50,14 +50,14 @@ export FABRIC_CFG_PATH=${DATA}/
 export ORDERER_FILELEDGER_LOCATION=/var/hyperledger/production/orderer
 
 
-env | grep ORDERER
+#env | grep ORDERER
 rm -rf /var/hyperledger/production/*
 mkdir -p data
 mkdir -p data/logs
 if [ -f ./data/logs/orderer.out ] ; then
 rm ./data/logs/orderer.out
 fi
-
+cp ../config/orderer.yaml ${DATA}/orderer.yaml
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/orderer start > ./data/logs/orderer.out 2>&1 &
 echo "done see /data/logs/orderer"
 
