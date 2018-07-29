@@ -66,7 +66,7 @@ function chaincodeQuery {
 
 # Query chaincode from the 1st peer of the 1st org
 #initPeerVars ${PORGS[0]} 1
-ORG=org2
+ORG=org1
 PEER_HOST=peer1-${ORG}
 PEER_NAME=${PEER_HOST}
 ORG_ADMIN_HOME=$DATA/orgs/$ORG/admin
