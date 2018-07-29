@@ -65,7 +65,7 @@ logging:
 peer:
 
     # The Peer id is used for identifying this Peer instance.
-    id: jdoe
+    id: peer1-org2
 
     # The networkId allows for logical seperation of networks
     networkId: dev
@@ -325,7 +325,7 @@ peer:
     # to match the name of one of the MSPs in each of the channel
     # that this peer is a member of. Otherwise this peer's messages
     # will not be identified as valid by other nodes.
-    localMspId: DEFAULT
+    localMspId: org2MSP
 
     # Delivery service related config
     deliveryclient:
