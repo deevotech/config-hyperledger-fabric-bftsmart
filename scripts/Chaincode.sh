@@ -47,7 +47,7 @@ function chaincodeQuery {
    # Continue to poll until we get a successful response or reach QUERY_TIMEOUT
    while test "$(($(date +%s)-starttime))" -lt "$QUERY_TIMEOUT"; do
       sleep 3
-      $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode query -C $CHANNEL_NAME -n ${n} -c '{"Args":["query","a"]}' >& data/logs/query-logs.txt
+      $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode query -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["query","a"]}' >& data/logs/query-logs.txt
       VALUE=$(cat data/logs/query-logs.txt | awk '/Query Result/ {print $NF}')
       if [ $? -eq 0 -a "$VALUE" = "$1" ]; then
          echo "Query of channel '$CHANNEL_NAME' on peer '$PEER_HOST' was successful"
