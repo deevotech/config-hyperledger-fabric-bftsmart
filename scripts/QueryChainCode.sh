@@ -19,7 +19,7 @@ if [ -z "${c}" ] || [ -z "${n}" ] ; then
 fi
 echo "create channel channelID ${c} chaincodeName ${n} "
 
-DATA=/hyperledgerconfig/data
+DATA=/home/ubuntu/hyperledgerconfig/data
 export FABRIC_CFG_PATH=$DATA/
 PEER_ORGS="org1 org2"
 NUM_PEERS=2
