@@ -41,7 +41,7 @@ Profiles:
     SampleSingleMSPChannel:
         Consortium: SampleConsortium
         Application:
-            <<: *ApplicationDefaults
+#            <<: *ApplicationDefaults
             Organizations:
                 - *org1
                 - *org2
