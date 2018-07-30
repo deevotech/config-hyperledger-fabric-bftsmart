@@ -122,8 +122,7 @@ done
 
 sleep 5 
 # Update the anchor peers
-#for ORG in $PEER_ORGS; do
-	ORG=org1
+for ORG in $PEER_ORGS; do
     #initPeerVars $ORG 1
     #switchToAdminIdentity
     PEER_HOST=peer1-${ORG}
@@ -152,5 +151,5 @@ sleep 5
     echo $ORDERER_CONN_ARGS
     $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer channel update -c $CHANNEL_NAME -f $ANCHOR_TX_FILE $ORDERER_CONN_ARGS
     sleep 2
-#done
+done
 
