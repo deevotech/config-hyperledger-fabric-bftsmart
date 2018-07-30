@@ -97,7 +97,7 @@ for ORG in $PEER_ORGS; do
 	   # gossip variables
 	   export CORE_PEER_GOSSIP_USELEADERELECTION=true
 	   export CORE_PEER_GOSSIP_ORGLEADER=false
-         if [ $COUNT -gt 1 ]; then
+        if [ $COUNT -gt 1 ]; then
       		# Point the non-anchor peers to the anchor peer, which is always the 1st peer
       		export CORE_PEER_GOSSIP_BOOTSTRAP=peer1-${ORG}:7051
    		fi
@@ -114,13 +114,13 @@ for ORG in $PEER_ORGS; do
 		         echo "Peer $PEER_HOST failed to join channel '$CHANNEL_NAME' in $MAX_RETRY retries"
 		      fi
 		      C=$((C+1))
-		      #sleep 2
+		      sleep 2
 		   done
          COUNT=$((COUNT+1))
      done
 done
 
-#sleep 5 
+sleep 5 
 # Update the anchor peers
 for ORG in $PEER_ORGS; do
     #initPeerVars $ORG 1
@@ -144,17 +144,12 @@ for ORG in $PEER_ORGS; do
 	   export CORE_PEER_PROFILE_ENABLED=true
 	   # gossip variables
 	   export CORE_PEER_GOSSIP_USELEADERELECTION=true
-	   export CORE_PEER_GOSSIP_ORGLEADER=false
-         if [ $COUNT -gt 1 ]; then
-      		# Point the non-anchor peers to the anchor peer, which is always the 1st peer
-      		export CORE_PEER_GOSSIP_BOOTSTRAP=peer1-${ORG}:7051
-   		fi
     echo "Updating anchor peers for $PEER_HOST ..."
     export ORDERER_PORT_ARGS=" -o orderer1-org0:7050 --tls --cafile $DATA/org0-ca-cert.pem --clientauth"
     export ORDERER_CONN_ARGS="$ORDERER_PORT_ARGS --keyfile $CORE_PEER_TLS_CLIENTKEY_FILE --certfile $CORE_PEER_TLS_CLIENTCERT_FILE"
     ANCHOR_TX_FILE=$DATA/orgs/$ORG/anchors.tx
     echo $ORDERER_CONN_ARGS
     $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer channel update -c $CHANNEL_NAME -f $ANCHOR_TX_FILE $ORDERER_CONN_ARGS
-    #sleep 2
+    sleep 2
 done
 
