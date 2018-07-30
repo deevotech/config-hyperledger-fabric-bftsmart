@@ -118,7 +118,7 @@ Orderer: &OrdererDefaults
 
     # Orderer Type: The orderer implementation to start.
     # Available types are solo and kafka.
-    OrdererType: bftsmart
+    OrdererType: solo
     
     # Addresses here is a nonexhaustive list of orderers the peers and clients can 
     # connect to. Adding/removing nodes from this list has no impact on their 
