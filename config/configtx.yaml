@@ -66,7 +66,7 @@ Organizations:
         ID: org0MSP
 
         # MSPDir is the filesystem path which contains the MSP configuration.
-        MSPDir: /home/ubuntu/hyperledgerconfig/data/orgs/org0/msp
+        MSPDir:  /home/ubuntu/hyperledgerconfig/data/orgs/org0/msp
 
     - &org1
         # Name is the key by which this org will be referenced in channel
@@ -79,7 +79,7 @@ Organizations:
         ID: org1MSP
 
         # MSPDir is the filesystem path which contains the MSP configuration.
-        MSPDir: /home/ubuntu/hyperledgerconfig/data/orgs/org1/msp
+        MSPDir:  /home/ubuntu/hyperledgerconfig/data/orgs/org1/msp
 
         # AnchorPeers defines the location of peers which can be used for
         # cross-org gossip communication. Note, this value is only encoded in
@@ -245,3 +245,4 @@ Capabilities:
         # NOTE: Use of this feature with non experimental binaries on
         # the network may cause a fork.
         V1_1_RESOURCETREE_EXPERIMENTAL: false
+   
