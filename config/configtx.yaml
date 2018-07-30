@@ -67,7 +67,7 @@ Organizations:
 
         # MSPDir is the filesystem path which contains the MSP configuration.
         MSPDir: /home/ubuntu/hyperledgerconfig/data/orgs/org0/msp
-        AdminPrincipal: Role.ADMIN
+        AdminPrincipal: Role.MEMBER
 
     - &org1
         # Name is the key by which this org will be referenced in channel
@@ -88,7 +88,7 @@ Organizations:
         AnchorPeers:
             - Host: peer1-org1
               Port: 7051
-        AdminPrincipal: Role.ADMIN
+        AdminPrincipal: Role.MEMBER
     - &org2
         # Name is the key by which this org will be referenced in channel
         # configuration transactions.
@@ -108,7 +108,7 @@ Organizations:
         AnchorPeers:
             - Host: peer1-org2
               Port: 7051
-        AdminPrincipal: Role.ADMIN
+        AdminPrincipal: Role.MEMBER
 ################################################################################
 #
 #   ORDERER
