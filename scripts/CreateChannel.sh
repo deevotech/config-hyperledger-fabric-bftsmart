@@ -42,7 +42,7 @@ done
 echo "join channel to chain"
 CA_CHAINFILE=${DATA}/org0-ca-cert.pem
 ORDERER_HOST=orderer1-org0
-export ORDERER_PORT_ARGS=" -o orderer1-org0:7050 --tls true --cafile $CA_CHAINFILE --clientauth"
+export ORDERER_PORT_ARGS=" -o orderer1-org0:7050 --tls --cafile $CA_CHAINFILE --clientauth"
 #initPeerVars ${PORGS[0]} 1
 PEER_NAME=peer1-org1
 PEER_HOST=$PEER_NAME
@@ -151,7 +151,7 @@ for ORG in $PEER_ORGS; do
       		export CORE_PEER_GOSSIP_BOOTSTRAP=peer1-${ORG}:7051
    		fi
     echo "Updating anchor peers for $PEER_HOST ..."
-    export ORDERER_PORT_ARGS=" -o orderer1-org0:7050 --tls true --cafile $DATA/org0-ca-cert.pem --clientauth"
+    export ORDERER_PORT_ARGS=" -o orderer1-org0:7050 --tls --cafile $DATA/org0-ca-cert.pem --clientauth"
     export ORDERER_CONN_ARGS="$ORDERER_PORT_ARGS --keyfile $CORE_PEER_TLS_CLIENTKEY_FILE --certfile $CORE_PEER_TLS_CLIENTCERT_FILE"
     ANCHOR_TX_FILE=$DATA/orgs/$ORG/anchors.tx
     echo $ORDERER_CONN_ARGS
