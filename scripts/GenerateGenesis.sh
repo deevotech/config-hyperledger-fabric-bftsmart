@@ -22,7 +22,7 @@ if [ -z "${c}" ] ; then
     usage
 fi
 echo $FABRIC_CFG_PATH
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/configtxgen -profile SampleSingleMSPBFTsmart -outputBlock $GENESIS_BLOCK_FILE -channelID genesischannel
+$GOPATH/src/github.com/hyperledger/fabric/build/bin/configtxgen -profile SampleSingleMSPBFTsmart -outputBlock $GENESIS_BLOCK_FILE
 if [ "$?" -ne 0 ]; then
     fatal "Failed to generate orderer genesis block"
 fi

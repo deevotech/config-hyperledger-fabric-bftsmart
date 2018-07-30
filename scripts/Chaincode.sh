@@ -27,7 +27,7 @@ CHANNEL_NAME=${c}
 CHANNEL_TX_FILE=$DATA/$CHANNEL_NAME.tx
 CA_CHAINFILE=${DATA}/org0-ca-cert.pem
 ORDERER_HOST=orderer1-org0
-export ORDERER_PORT_ARGS=" -o orderer1-org0:7050 --tls true --cafile $CA_CHAINFILE --clientauth"
+export ORDERER_PORT_ARGS=" -o orderer1-org0:7050 --tls --cafile $CA_CHAINFILE --clientauth"
 QUERY_TIMEOUT=30
 
 # Config block file path
@@ -148,7 +148,7 @@ for ORG in $PEER_ORGS; do
     export CORE_PEER_GOSSIP_USELEADERELECTION=true
     export CORE_PEER_GOSSIP_ORGLEADER=false
     echo "Install for $PEER_HOST ..."
-    export ORDERER_PORT_ARGS=" -o orderer1-org0:7050 --tls true --cafile $DATA/org0-ca-cert.pem --clientauth"
+    export ORDERER_PORT_ARGS=" -o orderer1-org0:7050 --tls --cafile $DATA/org0-ca-cert.pem --clientauth"
     export ORDERER_CONN_ARGS="$ORDERER_PORT_ARGS --keyfile $CORE_PEER_TLS_CLIENTKEY_FILE --certfile $CORE_PEER_TLS_CLIENTCERT_FILE"
     echo $ORDERER_CONN_ARGS
     $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode install -n $n -v 1.0 -p github.com/hyperledger/fabric-samples/chaincode/abac/go
