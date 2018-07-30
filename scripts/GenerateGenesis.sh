@@ -1,27 +1,13 @@
 #!/bin/bash
-usage() { echo "Usage: $0 [-c <channelname>]" 1>&2; exit 1; }
-set -e
+#set -e
 
-SDIR=$(dirname "$0")
-source $SDIR/env.sh
-
+#SDIR=$(dirname "$0")
+#source $SDIR/env.sh
+DATA=/home/ubuntu/hyperledgerconfig/data
 GENESIS_BLOCK_FILE=$DATA/genesis.block
 export FABRIC_CFG_PATH=$DATA/
-while getopts ":c:" o; do
-    case "${o}" in
-        c)
-            c=${OPTARG}
-            ;;
-        *)
-            usage
-            ;;
-    esac
-done
-shift $((OPTIND-1))
-if [ -z "${c}" ] ; then
-    usage
-fi
 echo $FABRIC_CFG_PATH
+cp ../config/configtx.yaml ${FABRIC_CFG_PATH}/
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/configtxgen -profile SampleSingleMSPBFTsmart -outputBlock $GENESIS_BLOCK_FILE
 if [ "$?" -ne 0 ]; then
     fatal "Failed to generate orderer genesis block"
