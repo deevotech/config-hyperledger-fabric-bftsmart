@@ -4,11 +4,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-usage() { echo "Usage: $0 [-g <orgname>]" 1>&2; exit 1; }
-while getopts ":g::" o; do
+usage() { echo "Usage: $0 [-g <orgname>] [-r <restart>]" 1>&2; exit 1; }
+while getopts ":g:r:" o; do
     case "${o}" in
         g)
             g=${OPTARG}
+            ;;
+        n)
+            n=${OPTARG}
             ;;
         *)
             usage
@@ -16,7 +19,7 @@ while getopts ":g::" o; do
     esac
 done
 shift $((OPTIND-1))
-if [ -z "${g}" ] ; then
+if [ -z "${g}" ] || [ -z "${n}" ] ; then
     usage
 fi
 source $(dirname "$0")/env.sh
@@ -30,22 +33,26 @@ export BOOTSTRAP_USER_PASS=rca-${g}-admin:rca-${g}-adminpw
 export TARGET_CERTFILE=$DATA/${g}-ca-cert.pem
 rm -rf $HOME/fabric-ca/*
 # Initialize the root CA
-$GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-server/fabric-ca-server init -b $BOOTSTRAP_USER_PASS
-
-# Copy the root CA's signing certificate to the data directory to be used by others
-mkdir -p ${DATA}
-rm -rf ${DATA}/*
-cp $FABRIC_CA_SERVER_HOME/ca-cert.pem $TARGET_CERTFILE
-
-# Add the custom orgs
-for o in $FABRIC_ORGS; do
-   aff=$aff"\n   $o: []"
-done
-aff="${aff#\\n   }"
-sed -i "/affiliations:/a \\   $aff" \
-   $FABRIC_CA_SERVER_HOME/fabric-ca-server-config.yaml
-sed -i "s/OU: Fabric/OU: COP/g" \
-   $FABRIC_CA_SERVER_HOME/fabric-ca-server-config.yaml
+if [ ${n} -eq 1 ] ; then
+	rm -rf ${FABRIC_CA_SERVER_HOME}/*
+	cp -R ${DATA}/rca-${g}-home/* ${FABRIC_CA_SERVER_HOME}/
+elif 
+	$GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-server/fabric-ca-server init -b $BOOTSTRAP_USER_PASS
+	# Copy the root CA's signing certificate to the data directory to be used by others
+	mkdir -p ${DATA}
+	rm -rf ${DATA}/*
+	cp $FABRIC_CA_SERVER_HOME/ca-cert.pem $TARGET_CERTFILE
+	
+	# Add the custom orgs
+	for o in $FABRIC_ORGS; do
+	   aff=$aff"\n   $o: []"
+	done
+	aff="${aff#\\n   }"
+	sed -i "/affiliations:/a \\   $aff" \
+	   $FABRIC_CA_SERVER_HOME/fabric-ca-server-config.yaml
+	sed -i "s/OU: Fabric/OU: COP/g" \
+	   $FABRIC_CA_SERVER_HOME/fabric-ca-server-config.yaml
+fi
 
 # Start the root CA
 mkdir -p data
