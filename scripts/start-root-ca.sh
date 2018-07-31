@@ -10,8 +10,8 @@ while getopts ":g:r:" o; do
         g)
             g=${OPTARG}
             ;;
-        n)
-            n=${OPTARG}
+        r)
+            r=${OPTARG}
             ;;
         *)
             usage
@@ -19,7 +19,7 @@ while getopts ":g:r:" o; do
     esac
 done
 shift $((OPTIND-1))
-if [ -z "${g}" ] || [ -z "${n}" ] ; then
+if [ -z "${g}" ] || [ -z "${r}" ] ; then
     usage
 fi
 source $(dirname "$0")/env.sh
@@ -33,7 +33,7 @@ export BOOTSTRAP_USER_PASS=rca-${g}-admin:rca-${g}-adminpw
 export TARGET_CERTFILE=$DATA/${g}-ca-cert.pem
 rm -rf $HOME/fabric-ca/*
 # Initialize the root CA
-if [ ${n} -eq 1 ] ; then
+if [ ${r} -eq 1 ] ; then
 	rm -rf ${FABRIC_CA_SERVER_HOME}/*
 	cp -R ${DATA}/rca-${g}-home/* ${FABRIC_CA_SERVER_HOME}/
 elif 
