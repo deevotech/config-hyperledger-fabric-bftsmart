@@ -31,6 +31,7 @@ export FABRIC_CA_SERVER_CSR_HOSTS=rca-${g}
 export FABRIC_CA_SERVER_DEBUG=true
 export BOOTSTRAP_USER_PASS=rca-${g}-admin:rca-${g}-adminpw
 export TARGET_CERTFILE=$DATA/${g}-ca-cert.pem
+export FABRIC_CA_SERVER_CA_NAME=rca-${g}
 rm -rf $HOME/fabric-ca/*
 # Initialize the root CA
 if [ ${r} -eq 1 ] ; then
