@@ -566,7 +566,7 @@ ledger:
        # during start up (eg LEDGER_COUCHDBCONFIG_PASSWORD).
        # If it is stored here, the file must be access control protected
        # to prevent unintended users from discovering the password.
-       password: -pbkdf2-50b220808af8061623d31780310ffb6074444838,79b35d05a3cd30dbae6d4781ece9beeb,10
+       password: admin
        # Number of retries for CouchDB errors
        maxRetries: 3
        # Number of retries for CouchDB errors during peer startup
