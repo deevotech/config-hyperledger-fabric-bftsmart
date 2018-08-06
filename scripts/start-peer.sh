@@ -66,6 +66,11 @@ if [ "$chaincodeImages" != "" ]; then
    docker rmi -f $chaincodeImages > /dev/null
 fi
 # remove couchdb database
+# restart couchdb server
+sudo sv stop /etc/service/couchdb
+if [ -f /etc/service/couchdb/supervise/lock ] ; then
+sudo rm /etc/service/couchdb/supervise/lock
+fi
 if [ -d /opt/couchdb ] ;  then
 sudo rm -rf /opt/couchdb
 fi
@@ -73,11 +78,7 @@ sudo mkdir /opt/couchdb
 sudo mkdir /opt/couchdb/data
 sudo chmod 777 -R /opt/couchdb
 sudo cp ./local.ini /home/couchdb/etc/local.ini
-# restart couchdb server
-sudo sv stop /etc/service/couchdb
-if [ -f /etc/service/couchdb/supervise/lock ] ; then
-sudo rm /etc/service/couchdb/supervise/lock
-fi
+rm -rf /ect/sv/couchdb/log/*
 #sudo runsv /etc/service/couchdb & ;
 sudo sv start /etc/service/couchdb
 
