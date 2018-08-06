@@ -78,7 +78,7 @@ sudo sv stop /etc/service/couchdb
 if [ -f /etc/service/couchdb/supervise/lock ] ; then
 sudo rm /etc/service/couchdb/supervise/lock
 fi
-sudo runsv /etc/service/couchdb &
+#sudo runsv /etc/service/couchdb & ;
 sudo sv start /etc/service/couchdb
 
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer node start > data/logs/${PEER_NAME}.out 2>&1 &
