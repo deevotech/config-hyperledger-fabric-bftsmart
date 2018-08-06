@@ -75,8 +75,8 @@ sudo mkdir -p /etc/service
 if [ -d /etc/service/couchdb ] ; then
 sudo rm -rf /etc/service/couchdb/*
 fi
-sudo mkdir -p /etc/service/couchdb
-sudo mkdir -p /etc/service/couchdb/supervise
+#sudo mkdir -p /etc/service/couchdb
+#sudo mkdir -p /etc/service/couchdb/supervise
 sudo ln -s /etc/sv/couchdb/ /etc/service/couchdb
 
 sleep 5
