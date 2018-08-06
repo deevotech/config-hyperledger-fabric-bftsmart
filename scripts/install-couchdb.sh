@@ -37,19 +37,13 @@ sudo mkdir /opt/couchdb/data
 sudo chmod 777 -R /opt/couchdb
 sudo cp ../local.ini /home/couchdb/etc/local.ini
 
-if [ ! -d /var/log/couchdb ] ; then
+sudo rm -rf /var/log/couchdb
 sudo mkdir /var/log/couchdb
 sudo chown couchdb:couchdb /var/log/couchdb
-fi
-if [ ! -d /etc/sv ] ; then
-sudo mkdir /etc/sv
-fi
-if [ ! -d /etc/sv/couchdb ] ; then
+
+sudo rm -rf /etc/sv/couchdb
 sudo mkdir /etc/sv/couchdb
 sudo mkdir /etc/sv/couchdb/log
-fi
-
-sudo rm -rf /ect/sv/couchdb/log/*
 
 cat > run << EOF
 #!/bin/sh
@@ -63,28 +57,14 @@ cat > log_run << EOF
 exec svlogd -tt /var/log/couchdb
 EOF
 
-
 sudo mv ./run /etc/sv/couchdb/run
-sudo mkdir -p /etc/sv/couchdb/log
 sudo mv ./log_run /etc/sv/couchdb/log/run
 
 sudo chmod u+x /etc/sv/couchdb/run
 sudo chmod u+x /etc/sv/couchdb/log/run
 
-sudo mkdir -p /etc/service
-if [ -d /etc/service/couchdb ] ; then
-sudo rm -rf /etc/service/couchdb/*
-fi
-#sudo mkdir -p /etc/service/couchdb
-#sudo mkdir -p /etc/service/couchdb/supervise
 sudo ln -s /etc/sv/couchdb/ /etc/service/couchdb
 
 sleep 5
 sudo sv status couchdb
-if [ -f /etc/service/couchdb/supervise/lock ] ; then
-sudo rm /etc/service/couchdb/supervise/lock
-fi
-sudo sv stop /etc/service/couchdb
-sudo runsv /etc/service/couchdb &
-sudo sv start /etc/service/couchdb
 
