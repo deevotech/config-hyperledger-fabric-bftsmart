@@ -65,5 +65,21 @@ if [ "$chaincodeImages" != "" ]; then
   # log "Removing chaincode docker images ..."
    docker rmi -f $chaincodeImages > /dev/null
 fi
+# remove couchdb database
+if [ -d /opt/couchdb ] ;  then
+sudo rm -rf /opt/couchdb
+fi
+sudo mkdir /opt/couchdb
+sudo mkdir /opt/couchdb/data
+sudo chmod 777 -R /opt/couchdb
+sudo cp ./local.ini /home/couchdb/etc/local.ini
+if [ -f /etc/service/couchdb/supervise/lock ] ; then
+sudo rm /etc/service/couchdb/supervise/lock
+fi
+# restart couchdb server
+sudo sv stop /etc/service/couchdb
+sudo runsv /etc/service/couchdb &
+sudo sv start /etc/service/couchdb
+
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer node start > data/logs/${PEER_NAME}.out 2>&1 &
 echo "Success see in data/logs/${PEER_NAME}.out"
