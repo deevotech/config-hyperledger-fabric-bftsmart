@@ -64,6 +64,7 @@ exec svlogd -tt /var/log/couchdb
 EOF
 
 sudo mv ./run /etc/sv/couchdb/run
+sudo mkdir -p /etc/sv/couchdb/log/run
 sudo mv ./log_run /etc/sv/couchdb/log/run
 
 sudo chmod u+x /etc/sv/couchdb/run
