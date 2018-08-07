@@ -79,8 +79,10 @@ sudo mkdir /opt/couchdb/data
 sudo chmod 777 -R /opt/couchdb
 sudo cp ./local.ini /home/couchdb/etc/local.ini
 rm -rf /ect/sv/couchdb/log/*
-sudo runsv /etc/service/couchdb & 
+sudo kill $(pidof runsv)
+sudo runsv /etc/service/couchdb &
+sleep 5
 sudo sv start /etc/service/couchdb
-
+sleep 10
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer node start > data/logs/${PEER_NAME}.out 2>&1 &
 echo "Success see in data/logs/${PEER_NAME}.out"
