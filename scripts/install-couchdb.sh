@@ -64,6 +64,7 @@ sudo chmod u+x /etc/sv/couchdb/run
 sudo chmod u+x /etc/sv/couchdb/log/run
 
 sudo ln -s /etc/sv/couchdb/ /etc/service/couchdb
+sudo runsv /etc/service/couchdb &
 
 sleep 5
 sudo sv status couchdb
