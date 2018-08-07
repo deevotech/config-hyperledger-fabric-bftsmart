@@ -94,8 +94,9 @@ echo $ORDERER_CONN_ARGS
 echo "Instantiating chaincode on $PEER_HOST ..."
 export ORDERER_PORT_ARGS=" -o orderer1-org0:7050 --tls --cafile $DATA/org0-ca-cert.pem --clientauth"
 export ORDERER_CONN_ARGS="$ORDERER_PORT_ARGS --keyfile $CORE_PEER_TLS_CLIENTKEY_FILE --certfile $CORE_PEER_TLS_CLIENTCERT_FILE"
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode instantiate -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["Init"]}' $ORDERER_CONN_ARGS
+$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode instantiate -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["init"]}' $ORDERER_CONN_ARGS
 
+sleep 10
 #initPeerVars ${PORGS[0]} 1
 #switchToUserIdentity
 ORG=org1
@@ -126,27 +127,27 @@ echo $ORDERER_CONN_ARGS
 
 echo "Sending invoke transaction to $PEER_HOST ..."
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["initMarble","marble1","blue","35","tom"]}' $ORDERER_CONN_ARGS
-
+sleep 3
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["initMarble","marble2","red","50","tom"]}' $ORDERER_CONN_ARGS
-
+sleep 3
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["initMarble","marble3","blue","70","tom"]}' $ORDERER_CONN_ARGS
-
+sleep 3
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["transferMarble","marble2","jerry"]}' $ORDERER_CONN_ARGS
-
+sleep 3
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["transferMarblesBasedOnColor","blue","jerry"]}' $ORDERER_CONN_ARGS
-
+sleep 3
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["delete","marble1"]}' $ORDERER_CONN_ARGS
-
+sleep 3
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["readMarble","marble1"]}' $ORDERER_CONN_ARGS
-
+sleep 3
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["getMarblesByRange","marble1","marble3"]}' $ORDERER_CONN_ARGS
-
+sleep 3
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["getHistoryForMarble","marble1"]}' $ORDERER_CONN_ARGS
-
+sleep 3
 #Rich Query (Only supported if CouchDB is used as state database):
 
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["queryMarblesByOwner","tom"]}' $ORDERER_CONN_ARGS
-
+sleep 3
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["queryMarbles","{\"selector\":{\"owner\":\"tom\"}}"]}' $ORDERER_CONN_ARGS
  
 echo "done";
