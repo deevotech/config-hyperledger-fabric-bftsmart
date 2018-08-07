@@ -67,6 +67,7 @@ if [ "$chaincodeImages" != "" ]; then
 fi
 # remove couchdb database
 # restart couchdb server
+sudo kill $(pidof runsv)
 sudo sv stop /etc/service/couchdb
 if [ -f /etc/service/couchdb/supervise/lock ] ; then
 sudo rm /etc/service/couchdb/supervise/lock
@@ -79,10 +80,9 @@ sudo mkdir /opt/couchdb/data
 sudo chmod 777 -R /opt/couchdb
 sudo cp ./local.ini /home/couchdb/etc/local.ini
 rm -rf /ect/sv/couchdb/log/*
-sudo kill $(pidof runsv)
-sudo runsv /etc/service/couchdb &
+
+sudo runsv /etc/service/couchdb
 sudo sv start /etc/service/couchdb
 sleep 5
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer node start > data/logs/${PEER_NAME}.out 2>&1 &
 echo "Success see in data/logs/${PEER_NAME}.out"
-exit
