@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -e
-
+sudo kill $(pidof runsv)
 sudo apt-get update || true
 sudo apt-get --no-install-recommends -y install \
     build-essential pkg-config runit erlang \
