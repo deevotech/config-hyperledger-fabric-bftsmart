@@ -67,7 +67,7 @@ if [ "$chaincodeImages" != "" ]; then
 fi
 # remove couchdb database
 # restart couchdb server
-sudo kill $(pidof runsv)
+#sudo kill $(pidof runsv)
 sudo sv stop /etc/service/couchdb
 if [ -f /etc/service/couchdb/supervise/lock ] ; then
 sudo rm /etc/service/couchdb/supervise/lock
