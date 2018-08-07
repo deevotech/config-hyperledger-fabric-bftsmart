@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -e
-sudo kill $(pidof runsv)
+
 sudo apt-get update || true
 sudo apt-get --no-install-recommends -y install \
     build-essential pkg-config runit erlang \
@@ -22,7 +22,7 @@ sudo adduser --system \
         --group --gecos \
         "CouchDB Administrator" couchdb
 fi
-
+sudo kill $(pidof runsv)
 sudo rm -rf /home/couchdb/*
 sudo cp -R rel/couchdb /home/couchdb
 sudo chown -R couchdb:couchdb /home/couchdb
