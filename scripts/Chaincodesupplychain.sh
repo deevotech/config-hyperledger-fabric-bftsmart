@@ -150,10 +150,10 @@ $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CH
 $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["sellMaterial","material4","4"]}' $ORDERER_CONN_ARGS
 sleep 3
 echo "action get historyfor Materials 1, 2, 3, 4"
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["getHistoryForMarble","material1"]}' $ORDERER_CONN_ARGS
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["getHistoryForMarble","material2"]}' $ORDERER_CONN_ARGS
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["getHistoryForMarble","material4"]}' $ORDERER_CONN_ARGS
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["getHistoryForMarble","material5"]}' $ORDERER_CONN_ARGS
+$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["getHistoryForMaterial","material1"]}' $ORDERER_CONN_ARGS
+$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["getHistoryForMaterial","material2"]}' $ORDERER_CONN_ARGS
+$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["getHistoryForMaterial","material4"]}' $ORDERER_CONN_ARGS
+$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["getHistoryForMaterial","material5"]}' $ORDERER_CONN_ARGS
 sleep 3
 #Rich Query (Only supported if CouchDB is used as state database):
 
