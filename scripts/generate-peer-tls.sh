@@ -112,4 +112,6 @@ if [ "$chaincodeImages" != "" ]; then
 fi
 mkdir -p data
 mkdir -p data/logs
+cp ${DATA}/${PEER_NAME}/tls/${PEER_NAME}-client.key ${DATA}/tls/
+cp ${DATA}/${PEER_NAME}/tls/${PEER_NAME}-client.csr ${DATA}/tls/
 cp ../config/core-peer${n}-${ORG}.yaml $DATA/core.yaml
