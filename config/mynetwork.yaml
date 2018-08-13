@@ -143,7 +143,7 @@ organizations:
     # this way. The SDK should allow applications to set the org admin identity via APIs, and only use
     # this route as an alternative when it exists.
     adminPrivateKey:
-      path: /home/ubuntu/hyperledgerconfig/data/orgs/org1/admin/msp/keystore/2610fe034428cd7243b37f91b2d012e58839988172e371bdcbcdddf7ceb70ba6_sk
+      path: /home/ubuntu/hyperledgerconfig/data/orgs/org1/admin/msp/keystore/e6bacdacf953951125598b6a5ab442f6b8b46949bc2828dc0ffa3802420b7fa5_sk
     signedCert:
       path: /home/ubuntu/hyperledgerconfig/data/orgs/org1/admin/msp/signcerts/cert.pem
 
@@ -160,7 +160,7 @@ organizations:
     certificateAuthorities:
       - rca-org2
     adminPrivateKey:
-      path: /home/ubuntu/hyperledgerconfig/data/orgs/org2/admin/msp/keystore/c7f9dc2a4d0d1609bbbb3d8f2e77b8f6c28bb90720401ddcd7a2d93042bef4c0_sk
+      path: /home/ubuntu/hyperledgerconfig/data/orgs/org2/admin/msp/keystore/5eda17f021dee76a96b5f16fedb4f601fb23b597ff5788073c5188e64424f0eb_sk
     signedCert:
       path: /home/ubuntu/hyperledgerconfig/data/orgs/org2/admin/msp/signcerts/cert.pem
 
@@ -236,7 +236,7 @@ certificateAuthorities:
     httpOptions:
       verify: false
     tlsCACerts:
-      path: /home/ubuntu/hyperledgerconfig/data/rca-org1-home/ca-cert.pem
+      path: /home/ubuntu/hyperledgerconfig/data/org1-ca-cert.pem
 
     # Fabric-CA supports dynamic user enrollment via REST APIs. A "root" user, a.k.a registrar, is
     # needed to enroll and invoke new users.
@@ -251,7 +251,7 @@ certificateAuthorities:
     httpOptions:
       verify: false
     tlsCACerts:
-      path: /home/ubuntu/hyperledgerconfig/data/rca-org2-home/ca-cert.pem
+      path: /home/ubuntu/hyperledgerconfig/data/org2-ca-cert.pem
     registrar:
       - enrollId: rca-org2-admin
         enrollSecret: rca-org2-adminpw
@@ -262,7 +262,7 @@ certificateAuthorities:
     httpOptions:
       verify: false
     tlsCACerts:
-      path: /home/ubuntu/hyperledgerconfig/data/rca-org0-home/ca-cert.pem
+      path: /home/ubuntu/hyperledgerconfig/data/org0-ca-cert.pem
     registrar:
       - enrollId: rca-org0-admin
         enrollSecret: rca-org2-adminpw
