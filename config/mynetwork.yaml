@@ -24,7 +24,7 @@ description: "The network to be in if you want to stay in the global trade busin
 #
 # Schema version of the content. Used by the SDK to apply the corresponding parsing rules.
 #
-version: "1.1.0"
+version: "1.0"
 
 #
 # The client section is SDK-specific. The sample below is for the node.js SDK
@@ -59,7 +59,7 @@ version: "1.1.0"
 #
 channels:
   # name of the channel
-  mychannel2:
+  mychannel:
     # Required. list of orderers designated by the application to use for transactions on this
     # channel. This list can be a result of access control ("org1" can only access "ordererA"), or
     # operational decisions to share loads from applications among the orderers.  The values must
