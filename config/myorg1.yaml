@@ -12,7 +12,7 @@ name: "fabric-ca"
 #
 type: "hl-fabric@^1.1.0"
 description: "The network to be in if you want to stay in the global trade business"
-version: 1.1.0
+version: 1.0.0
 
 #
 # The client section is SDK-specific. The sample below is for the node.js SDK
