@@ -20,7 +20,7 @@ version: 1.0.0
 client:
   # Which organization does this application instance belong to? The value is the name of an org
   # defined under "organizations"
-  organization: client
+  organization: org1
 
   # set connection timeouts for the peer and orderer for the client
   connection:
@@ -57,4 +57,4 @@ client:
       path: "/tmp/hfc-cvs/org1"
 
     # Specific to Composer environment
-    wallet: wallet-name
+    #wallet: wallet-name
