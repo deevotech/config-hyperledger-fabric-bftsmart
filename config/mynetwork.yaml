@@ -24,7 +24,7 @@ description: "The network to be in if you want to stay in the global trade busin
 #
 # Schema version of the content. Used by the SDK to apply the corresponding parsing rules.
 #
-version: "1.1.1"
+version: "1.1.0"
 
 #
 # The client section is SDK-specific. The sample below is for the node.js SDK
