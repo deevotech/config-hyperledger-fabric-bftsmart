@@ -88,7 +88,7 @@ function registerPeerIdentities {
       done
       log "Registering admin identity with $CA_NAME"
       # The admin identity has the "admin" attribute which is added to ECert by default
-      $GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-client register -d --id.name $ADMIN_NAME --id.secret $ADMIN_PASS --id.attrs "hf.Registrar.Roles=client,hf.Registrar.Attributes=*,hf.Revoker=true,hf.GenCRL=true,admin=true:ecert,abac.init=true:ecert"
+      $GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-client register -d --id.name $ADMIN_NAME --id.secret $ADMIN_PASS --id.attrs "hf.Registrar.Roles=client,hf.Registrar.Attributes=*,hf.Revoker=true,hf.GenCRL=true,admin=true:ecert,abac.init=true:ecert,chaincode_example02.init=true:ecert,marbles02.init=true:ecert,supplychain.init=true:ecert"
       log "Registering user identity with $CA_NAME"
       $GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/fabric-ca-client register -d --id.name $USER_NAME --id.secret $USER_PASS
    #done
