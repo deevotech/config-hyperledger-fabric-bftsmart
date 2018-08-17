@@ -13,6 +13,9 @@
 # Name of the docker-compose network
 NETWORK=fabric-ca-orderer-bftsmart
 
+# Names of the organizations
+FABRIC_ORGS="org0 org1 org2"
+
 # Names of the orderer organizations
 ORDERER_ORGS="org0"
 
