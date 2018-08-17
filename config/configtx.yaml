@@ -94,39 +94,6 @@ Capabilities:
 
 ################################################################################
 #
-#   CHANNEL
-#
-#   This section defines the values to encode into a config transaction or
-#   genesis block for channel related parameters.
-#
-################################################################################
-Channel: &ChannelDefaults
-    # Policies defines the set of policies at this level of the config tree
-    # For Channel policies, their canonical path is
-    #   /Channel/<PolicyName>
-    Policies:
-        # Who may invoke the 'Deliver' API
-        Readers:
-            Type: ImplicitMeta
-            Rule: "ANY Readers"
-        # Who may invoke the 'Broadcast' API
-        Writers:
-            Type: ImplicitMeta
-            Rule: "ANY Writers"
-        # By default, who may modify elements at this config level
-        Admins:
-            Type: ImplicitMeta
-            Rule: "MAJORITY Admins"
-
-
-    # Capabilities describes the channel level capabilities, see the
-    # dedicated Capabilities section elsewhere in this file for a full
-    # description
-    Capabilities:
-        <<: *ChannelCapabilities
-
-################################################################################
-#
 #   ORDERER
 #
 #   This section defines the values to encode into a config transaction or
@@ -205,7 +172,6 @@ Profiles:
     # and contains a single MSP definition (the MSP sampleconfig).
     # The Consortium SampleConsortium has only a single member, SampleOrg
     SampleSingleMSPBFTsmart:
-        <<: *ChannelDefaults
         Orderer:
             <<: *OrdererDefaults
             OrdererType: bftsmart
