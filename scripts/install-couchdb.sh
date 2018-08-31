@@ -22,7 +22,12 @@ sudo adduser --system \
         --group --gecos \
         "CouchDB Administrator" couchdb
 fi
-sudo kill $(pidof runsv)
+for pid in $(pidof runsv); do
+    if [ $pid != $$ ]; then
+        echo "Process is already running with PID $pid"
+        sudo kill $pid
+    fi
+done
 sudo rm -rf /home/couchdb
 sudo cp -R rel/couchdb /home/couchdb
 sudo chown -R couchdb:couchdb /home/couchdb
