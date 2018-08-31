@@ -4,7 +4,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-usage() { echo "Usage: $0 [-g <orgname>] [-n <numberpeer>]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-g <orgname>] [-n <numberOfOrderer>]" 1>&2; exit 1; }
 while getopts ":g:n:" o; do
     case "${o}" in
         g)
