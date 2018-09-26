@@ -115,4 +115,3 @@ mkdir -p data
 mkdir -p data/logs
 cp ${DATA}/${PEER_NAME}/tls/${PEER_NAME}-client.key ${DATA}/tls/
 cp ${DATA}/${PEER_NAME}/tls/${PEER_NAME}-client.crt ${DATA}/tls/
-cp ../config-1.2/core-peer${n}-${ORG}.yaml $DATA/core.yaml

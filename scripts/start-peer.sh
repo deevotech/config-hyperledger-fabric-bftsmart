@@ -54,7 +54,7 @@ if [ $NUMBER -gt 1 ]; then
 fi
 
 export FABRIC_CFG_PATH=${DATA}/
-cp ../config/core-${PEER_NAME}.yaml ${DATA}/core.yaml
+cp ../config-1.2/core-${PEER_NAME}.yaml ${DATA}/core.yaml
 mkdir -p data
 mkdir -p data/logs
 if [ -f ./data/logs/${PEER_NAME}.out ]; then

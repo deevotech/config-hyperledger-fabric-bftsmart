@@ -36,10 +36,6 @@ function main() {
 	log "Beginning building channel artifacts ..."
 	registerIdentities
 	getCACerts
-
-	cp ../config-1.2/orderer.yaml $DATA/
-    cp ../config-1.2/configtx.yaml $DATA/
-	cp ../config-1.2/core-orderer.yaml $DATA/core.yaml
 }
 
 # Enroll the CA administrator
