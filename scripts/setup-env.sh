@@ -37,11 +37,13 @@ cd hyperledger
 git clone https://github.com/deevotech/fabric -b release-1.2-deevo
 cd fabric
 sudo ./devenv/setupUbuntuOnPPC64le.sh
-make dist-clean peer orderer configtxgen
+make dist-clean peer orderer configtxgen discover
 # Compile Hyperledger BFTSmart 
 cd $GOPATH/src/github.com/hyperledger
 git clone https://github.com/deevotech/fabric-orderingservice -b release-1.2-deevo
 mv fabric-orderingservice hyperledger-bftsmart
+cp ../config-1.2/hosts.config hyperledger-bftsmart/
+cp ../config-1.2/node.config hyperledger-bftsmart/
 cd hyperledger-bftsmart
 ant
 

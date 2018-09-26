@@ -9,23 +9,26 @@ set -e
 source $(dirname "$0")/env.sh
 
 # Wait for setup to complete sucessfully
-usage() { echo "Usage: $0 [-g <orgname>] [-n <numberpeer>]" 1>&2; exit 1; }
+usage() {
+	echo "Usage: $0 [-g <orgname>] [-n <numberpeer>]" 1>&2
+	exit 1
+}
 while getopts ":g:n:" o; do
-    case "${o}" in
-        g)
-            g=${OPTARG}
-            ;;
-        n)
-            n=${OPTARG}
-            ;;
-        *)
-            usage
-            ;;
-    esac
+	case "${o}" in
+	g)
+		g=${OPTARG}
+		;;
+	n)
+		n=${OPTARG}
+		;;
+	*)
+		usage
+		;;
+	esac
 done
-shift $((OPTIND-1))
-if [ -z "${g}" ] || [ -z "${n}" ] ; then
-    usage
+shift $((OPTIND - 1))
+if [ -z "${g}" ] || [ -z "${n}" ]; then
+	usage
 fi
 source $(dirname "$0")/env.sh
 ORG=${g}
@@ -56,20 +59,19 @@ export ORDERER_DEBUG_BROADCASTTRACEDIR=$DATA/logs
 export ORG=${g}
 export ORG_ADMIN_CERT=${DATA}/orgs/org0/msp/admincerts/cert.pem
 
-
 mkdir -p ${DATA}/orderer
 mkdir -p ${DATA}/orderer/tls
 rm -rf /var/hyperledger/production/*
 mkdir -p data
 mkdir -p data/logs
-if [ -f ./data/logs/orderer.out ] ; then
-rm ./data/logs/orderer.out
+if [ -f ./data/logs/orderer.out ]; then
+	rm ./data/logs/orderer.out
 fi
 
 mkdir -p /tmp/tls
 mkdir -p /tmp/tls/signcerts
 mkdir -p /tmp/tls/keystore
-if [ -d /tmp/tls/keystore ] ; then
+if [ -d /tmp/tls/keystore ]; then
 	rm -rf /tmp/tls/keystore/*
 fi
 # Enroll to get orderer's TLS cert (using the "tls" profile)
@@ -94,11 +96,10 @@ env | grep ORDERER
 rm -rf /var/hyperledger/production/*
 mkdir -p data
 mkdir -p data/logs
-if [ -f ./data/logs/orderer.out ] ; then
-rm ./data/logs/orderer.out
+if [ -f ./data/logs/orderer.out ]; then
+	rm ./data/logs/orderer.out
 fi
 cp -R ${FABRIC_CA_CLIENT_HOME}/* ${DATA}/orderer
 #cp -R ${ORDERER_GENERAL_LOCALMSPDIR} ${DATA}/orderer
 
 echo "done see /data/logs/orderer"
-

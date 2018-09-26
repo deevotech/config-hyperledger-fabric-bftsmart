@@ -4,7 +4,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-usage() { echo "Usage: $0 [-g <orgname>] [-r <restart>]" 1>&2; exit 1; }
+usage() {
+	echo "Usage: $0 [-g <orgname>] [-r <restart>]" 1>&2
+	exit 1
+}
 while getopts ":g:r:" o; do
     case "${o}" in
         g)
@@ -18,8 +21,8 @@ while getopts ":g:r:" o; do
             ;;
     esac
 done
-shift $((OPTIND-1))
-if [ -z "${g}" ] || [ -z "${r}" ] ; then
+shift $((OPTIND - 1))
+if [ -z "${g}" ] || [ -z "${r}" ]; then
     usage
 fi
 source $(dirname "$0")/env.sh
@@ -33,8 +36,15 @@ export BOOTSTRAP_USER_PASS=rca-${g}-admin:rca-${g}-adminpw
 export TARGET_CERTFILE=$DATA/${g}-ca-cert.pem
 export FABRIC_CA_SERVER_CA_NAME=rca-${g}
 rm -rf $HOME/fabric-ca/*
+# kill old processes if existed
+for pid in $(lsof -t -i :7054); do
+    if [ $pid != $$ ]; then
+        echo "Process is already running with PID $pid"
+    	kill $pid
+    fi
+done
 # Initialize the root CA
-if [ ${r} -eq 1 ] ; then
+if [ ${r} -eq 1 ]; then
 	rm -rf ${FABRIC_CA_SERVER_HOME}/*
 	cp -R ${DATA}/rca-${g}-home/* ${FABRIC_CA_SERVER_HOME}/
 else 
@@ -46,16 +56,14 @@ else
 	
 	# Add the custom orgs
 	for o in $FABRIC_ORGS; do
-	   aff=$aff"\n   $o: []"
+	    aff=$aff"\n   $o: []"
 	done
-	aff="${aff#\\n   }"
-	sed -i "/affiliations:/a \\   $aff" \
-	   $FABRIC_CA_SERVER_HOME/fabric-ca-server-config.yaml
+	perl -0777 -i.original -pe "s/affiliations:\n   org1:\n      - department1\n      - department2\n   org2:\n      - department1/affiliations:$aff/" $FABRIC_CA_SERVER_HOME/fabric-ca-server-config.yaml
 	sed -i "s/OU: Fabric/OU: COP/g" \
-	   $FABRIC_CA_SERVER_HOME/fabric-ca-server-config.yaml
+	$FABRIC_CA_SERVER_HOME/fabric-ca-server-config.yaml
 fi
 
 # Start the root CA
 mkdir -p data
 mkdir -p data/logs
-$GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-server/fabric-ca-server start > ./data/logs/fabric-ca-rca-${g}.out 2>&1 &
+$GOPATH/src/github.com/hyperledger/fabric-ca/cmd/fabric-ca-server/fabric-ca-server start >./data/logs/fabric-ca-rca-${g}.out 2>&1 &

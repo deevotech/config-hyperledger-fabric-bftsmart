@@ -33,7 +33,7 @@ General:
         PrivateKey: tls/server.key
         Certificate: tls/server.crt
         RootCAs:
-          - tls/ca.crt
+            - tls/ca.crt
         ClientAuthRequired: false
         ClientRootCAs:
 
@@ -84,7 +84,7 @@ General:
     # manager. IMPORTANT: The local MSP ID of an orderer needs to match the MSP
     # ID of one of the organizations defined in the orderer system channel's
     # /Channel/Orderer configuration. The sample organization defined in the
-    # sample configuration provided has an MSP ID of "DEFAULT".
+    # sample configuration provided has an MSP ID of "SampleOrg".
     LocalMSPID: org0MSP
 
     # Enable an HTTP service for Go "pprof" profiling as documented at:
@@ -217,32 +217,32 @@ Kafka:
     # TLS: TLS settings for the orderer's connection to the Kafka cluster.
     TLS:
 
-      # Enabled: Use TLS when connecting to the Kafka cluster.
-      Enabled: false
+        # Enabled: Use TLS when connecting to the Kafka cluster.
+        Enabled: false
 
-      # PrivateKey: PEM-encoded private key the orderer will use for
-      # authentication.
-      PrivateKey:
-        # As an alternative to specifying the PrivateKey here, uncomment the
-        # following "File" key and specify the file name from which to load the
-        # value of PrivateKey.
-        #File: path/to/PrivateKey
+        # PrivateKey: PEM-encoded private key the orderer will use for
+        # authentication.
+        PrivateKey:
+            # As an alternative to specifying the PrivateKey here, uncomment the
+            # following "File" key and specify the file name from which to load the
+            # value of PrivateKey.
+            #File: path/to/PrivateKey
 
-      # Certificate: PEM-encoded signed public key certificate the orderer will
-      # use for authentication.
-      Certificate:
-        # As an alternative to specifying the Certificate here, uncomment the
-        # following "File" key and specify the file name from which to load the
-        # value of Certificate.
-        #File: path/to/Certificate
+        # Certificate: PEM-encoded signed public key certificate the orderer will
+        # use for authentication.
+        Certificate:
+            # As an alternative to specifying the Certificate here, uncomment the
+            # following "File" key and specify the file name from which to load the
+            # value of Certificate.
+            #File: path/to/Certificate
 
-      # RootCAs: PEM-encoded trusted root certificates used to validate
-      # certificates from the Kafka cluster.
-      RootCAs:
-        # As an alternative to specifying the RootCAs here, uncomment the
-        # following "File" key and specify the file name from which to load the
-        # value of RootCAs.
-        #File: path/to/RootCAs
+        # RootCAs: PEM-encoded trusted root certificates used to validate
+        # certificates from the Kafka cluster.
+        RootCAs:
+            # As an alternative to specifying the RootCAs here, uncomment the
+            # following "File" key and specify the file name from which to load the
+            # value of RootCAs.
+            #File: path/to/RootCAs
 
     # Kafka protocol version used to communicate with the Kafka cluster brokers
     # (defaults to 0.10.2.0 if not specified)

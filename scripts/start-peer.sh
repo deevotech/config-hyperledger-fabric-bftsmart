@@ -4,23 +4,26 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-usage() { echo "Usage: $0 [-g <orgname>] [-n <numberpeer>]" 1>&2; exit 1; }
+usage() {
+	echo "Usage: $0 [-g <orgname>] [-n <numberpeer>]" 1>&2
+	exit 1
+}
 while getopts ":g:n:" o; do
-    case "${o}" in
-        g)
-            g=${OPTARG}
-            ;;
-        n)
-            n=${OPTARG}
-            ;;
-        *)
-            usage
-            ;;
-    esac
+	case "${o}" in
+	g)
+		g=${OPTARG}
+		;;
+	n)
+		n=${OPTARG}
+		;;
+	*)
+		usage
+		;;
+	esac
 done
-shift $((OPTIND-1))
-if [ -z "${g}" ] || [ -z "${n}" ] ; then
-    usage
+shift $((OPTIND - 1))
+if [ -z "${g}" ] || [ -z "${n}" ]; then
+	usage
 fi
 ORG=${g}
 NUMBER=${n}
@@ -45,35 +48,35 @@ export CORE_LOGGING_LEVEL=DEBUG
 export CORE_PEER_GOSSIP_EXTERNALENDPOINT=${PEER_NAME}:7051
 export CORE_PEER_ADDRESS=${PEER_NAME}:7051
 export CORE_PEER_GOSSIP_USELEADERELECTION=true
-if [ $NUMBER -gt 1 ] ; then
-export CORE_PEER_GOSSIP_BOOTSTRAP=peer${NUMBER}-${ORG}:7051
-export CORE_PEER_ADDRESSAUTODETECT=true
+if [ $NUMBER -gt 1 ]; then
+	export CORE_PEER_GOSSIP_BOOTSTRAP=peer${NUMBER}-${ORG}:7051
+	export CORE_PEER_ADDRESSAUTODETECT=true
 fi
 
 export FABRIC_CFG_PATH=${DATA}/
 cp ../config/core-${PEER_NAME}.yaml ${DATA}/core.yaml
 mkdir -p data
 mkdir -p data/logs
-if [ -f ./data/logs/${PEER_NAME}.out ] ; then
-rm ./data/logs/${PEER_NAME}.out
+if [ -f ./data/logs/${PEER_NAME}.out ]; then
+	rm ./data/logs/${PEER_NAME}.out
 fi
-if [ -d /var/hyperledger/production ] ; then
-rm -rf /var/hyperledger/production/*
+if [ -d /var/hyperledger/production ]; then
+	rm -rf /var/hyperledger/production/*
 fi
-chaincodeImages=`docker images | grep "^dev-peer" | awk '{print $3}'`
+chaincodeImages=$(docker images | grep "^dev-peer" | awk '{print $3}')
 if [ "$chaincodeImages" != "" ]; then
-  # log "Removing chaincode docker images ..."
-   docker rmi -f $chaincodeImages > /dev/null
+	# log "Removing chaincode docker images ..."
+	docker rmi -f $chaincodeImages >/dev/null
 fi
 # remove couchdb database
 # restart couchdb server
 #sudo kill $(pidof runsv)
 sudo sv stop /etc/service/couchdb
-if [ -f /etc/service/couchdb/supervise/lock ] ; then
-sudo rm /etc/service/couchdb/supervise/lock
+if [ -f /etc/service/couchdb/supervise/lock ]; then
+	sudo rm /etc/service/couchdb/supervise/lock
 fi
-if [ -d /opt/couchdb ] ;  then
-sudo rm -rf /opt/couchdb
+if [ -d /opt/couchdb ]; then
+	sudo rm -rf /opt/couchdb
 fi
 sudo mkdir /opt/couchdb
 sudo mkdir /opt/couchdb/data
@@ -84,5 +87,5 @@ rm -rf /ect/sv/couchdb/log/*
 #sudo runsv /etc/service/couchdb
 sudo sv start /etc/service/couchdb
 sleep 5
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer node start > data/logs/${PEER_NAME}.out 2>&1 &
+$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer node start >data/logs/${PEER_NAME}.out 2>&1 &
 echo "Success see in data/logs/${PEER_NAME}.out"
