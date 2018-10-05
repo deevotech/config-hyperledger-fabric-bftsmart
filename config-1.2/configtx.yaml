@@ -53,7 +53,7 @@ Organizations:
         Name: org1
         ID: org1MSP
         MSPDir: /home/ubuntu/hyperledgerconfig/data/orgs/org1/msp
-        Policies: &org0Policies
+        Policies: &org1Policies
             Readers:
                 Type: Signature
                 Rule: "OR('org1MSP.member')"
@@ -69,11 +69,11 @@ Organizations:
         AnchorPeers:
             - Host: peer1-org1
               Port: 7051
-    - &org1
+    - &org2
         Name: org2
         ID: org2MSP
         MSPDir: /home/ubuntu/hyperledgerconfig/data/orgs/org2/msp
-        Policies: &org0Policies
+        Policies: &org2Policies
             Readers:
                 Type: Signature
                 Rule: "OR('org2MSP.member')"
@@ -397,6 +397,17 @@ Profiles:
                     - *org1
                     - *org2
 
+    # SampleSingleMSPChannel defines a channel with only the sample org as a
+    # member. It is designed to be used in conjunction with SampleSingleMSPSolo
+    # and SampleSingleMSPKafka orderer profiles.
+    SampleSingleMSPChannel:
+        Consortium: SampleConsortium
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *org1
+                - *org2
+
     # JCS: my profile
     # SampleInsecureBFTsmart defines a configuration that differs from the
     # SampleInsecureSolo one only in that is uses the bftsmart-based orderer.
@@ -409,36 +420,3 @@ Profiles:
             SampleConsortium:
                 Organizations:
 
-    # JCS: my profile
-    # SampleDevModeBFTsmart defines a configuration that differs from the
-    # SampleDevModeSolo one only in that it uses the bftsmart-based orderer.
-    SampleDevModeKafka:
-        <<: *ChannelDefaults
-        Orderer:
-            <<: *OrdererDefaults
-            OrdererType: bftsmart
-            Organizations:
-                - <<: *SampleOrg
-                  Policies:
-                      <<: *SampleOrgPolicies
-                      Admins:
-                          Type: Signature
-                          Rule: "OR('SampleOrg.member')"
-        Application:
-            <<: *ApplicationDefaults
-            Organizations:
-                - <<: *SampleOrg
-                  Policies:
-                      <<: *SampleOrgPolicies
-                      Admins:
-                          Type: Signature
-                          Rule: "OR('SampleOrg.member')"
-        Consortiums:
-            SampleConsortium:
-                Organizations:
-                    - <<: *SampleOrg
-                      Policies:
-                          <<: *SampleOrgPolicies
-                          Admins:
-                              Type: Signature
-                              Rule: "OR('SampleOrg.member')"

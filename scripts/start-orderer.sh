@@ -52,6 +52,6 @@ fi
 
 cp ../config-1.2/orderer.yaml ${DATA}/
 cp ../config-1.2/core-orderer.yaml ${DATA}/core.yaml
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/orderer start > ./data/logs/orderer.out 2>&1 &
+$GOPATH/src/github.com/hyperledger/fabric/.build/bin/orderer start > ./data/logs/orderer.out 2>&1 &
 echo "done see /data/logs/orderer"
 

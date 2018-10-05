@@ -97,13 +97,13 @@ function generateChannelArtifacts() {
 	# Note: For some unknown reason (at least for now) the block file can't be
 	# named orderer.genesis.block or the orderer will fail to launch!
 	#cp /data/core.yaml $FABRIC_CFG_PATH/
-	$GOPATH/src/github.com/hyperledger/fabric/build/bin/configtxgen -profile SampleSingleMSPBFTsmart -outputBlock $GENESIS_BLOCK_FILE
+	$GOPATH/src/github.com/hyperledger/fabric/.build/bin/configtxgen -profile SampleSingleMSPBFTsmart -outputBlock $GENESIS_BLOCK_FILE
 	if [ "$?" -ne 0 ]; then
 		fatal "Failed to generate orderer genesis block"
 	fi
 
 	log "Generating channel configuration transaction at $CHANNEL_TX_FILE"
-	$GOPATH/src/github.com/hyperledger/fabric/build/bin/configtxgen -profile SampleSingleMSPChannel -outputCreateChannelTx $CHANNEL_TX_FILE -channelID $CHANNEL_NAME
+	$GOPATH/src/github.com/hyperledger/fabric/.build/bin/configtxgen -profile SampleSingleMSPChannel -outputCreateChannelTx $CHANNEL_TX_FILE -channelID $CHANNEL_NAME
 	if [ "$?" -ne 0 ]; then
 		fatal "Failed to generate channel configuration transaction"
 	fi
@@ -111,7 +111,7 @@ function generateChannelArtifacts() {
 	for ORG in $PEER_ORGS; do
 		initOrgVars $ORG
 		log "Generating anchor peer update transaction for $ORG at $ANCHOR_TX_FILE"
-		$GOPATH/src/github.com/hyperledger/fabric/build/bin/configtxgen -profile SampleSingleMSPChannel -outputAnchorPeersUpdate $ANCHOR_TX_FILE \
+		$GOPATH/src/github.com/hyperledger/fabric/.build/bin/configtxgen -profile SampleSingleMSPChannel -outputAnchorPeersUpdate $ANCHOR_TX_FILE \
 			-channelID $CHANNEL_NAME -asOrg $ORG
 		if [ "$?" -ne 0 ]; then
 			fatal "Failed to generate anchor peer update for $ORG"

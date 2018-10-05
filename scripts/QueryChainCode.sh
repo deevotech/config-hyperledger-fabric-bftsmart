@@ -41,7 +41,7 @@ function chaincodeQuery {
    # Continue to poll until we get a successful response or reach QUERY_TIMEOUT
    while test "$(($(date +%s)-starttime))" -lt "$QUERY_TIMEOUT"; do
       sleep 2
-      $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode query -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["query","a"]}' 
+      $GOPATH/src/github.com/hyperledger/fabric/.build/bin/peer chaincode query -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["query","a"]}' 
       #>& data/logs/query-logs.txt
       #VALUE=$(cat data/logs/query-logs.txt | awk '/Query Result/ {print $NF}')
       #if [ $? -eq 0 -a "$VALUE" = "$1" ]; then
@@ -125,7 +125,7 @@ export ORDERER_CONN_ARGS="$ORDERER_PORT_ARGS --keyfile $CORE_PEER_TLS_CLIENTKEY_
 echo $ORDERER_CONN_ARGS
 
 echo "Sending invoke transaction to $PEER_HOST ..."
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["invoke","a","b","10"]}' $ORDERER_CONN_ARGS
+$GOPATH/src/github.com/hyperledger/fabric/.build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["invoke","a","b","10"]}' $ORDERER_CONN_ARGS
 
 sleep 100
 # Query chaincode from the 1st peer of the 1st org

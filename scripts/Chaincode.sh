@@ -47,7 +47,7 @@ function chaincodeQuery {
    # Continue to poll until we get a successful response or reach QUERY_TIMEOUT
    while test "$(($(date +%s)-starttime))" -lt "$QUERY_TIMEOUT"; do
       sleep 3
-      $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode query -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["query","a"]}' >& data/logs/query-logs.txt
+      $GOPATH/src/github.com/hyperledger/fabric/.build/bin/peer chaincode query -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["query","a"]}' >& data/logs/query-logs.txt
       VALUE=$(cat data/logs/query-logs.txt | awk '/Query Result/ {print $NF}')
       if [ $? -eq 0 -a "$VALUE" = "$1" ]; then
          echo "Query of channel '$CHANNEL_NAME' on peer '$PEER_HOST' was successful"
@@ -70,15 +70,15 @@ function chaincodeQuery {
 function installChaincode {
    #switchToAdminIdentity
    echo "Installing chaincode on $PEER_HOST ..."
-   $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode install -n ${n} -v 1.0 -p github.com/hyperledger/fabric-samples/chaincode/abac/go
+   $GOPATH/src/github.com/hyperledger/fabric/.build/bin/peer chaincode install -n ${n} -v 1.0 -p github.com/hyperledger/fabric-samples/chaincode/abac/go
 }
 function fetchConfigBlock {
    echo "Fetching the configuration block of the channel '$CHANNEL_NAME'"
-   $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer channel fetch config $CONFIG_BLOCK_FILE -c $CHANNEL_NAME $ORDERER_CONN_ARGS
+   $GOPATH/src/github.com/hyperledger/fabric/.build/bin/peer channel fetch config $CONFIG_BLOCK_FILE -c $CHANNEL_NAME $ORDERER_CONN_ARGS
 }
 function updateConfigBlock {
    echo "Updating the configuration block of the channel '$CHANNEL_NAME'"
-   $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer channel update -f $CONFIG_UPDATE_ENVELOPE_FILE -c $CHANNEL_NAME $ORDERER_CONN_ARGS
+   $GOPATH/src/github.com/hyperledger/fabric/.build/bin/peer channel update -f $CONFIG_UPDATE_ENVELOPE_FILE -c $CHANNEL_NAME $ORDERER_CONN_ARGS
 }
 function createConfigUpdatePayloadWithCRL {
    log "Creating config update payload with the generated CRL for the organization '$ORG'"
@@ -151,11 +151,11 @@ for ORG in $PEER_ORGS; do
     export ORDERER_PORT_ARGS=" -o orderer1-org0:7050 --tls --cafile $DATA/org0-ca-cert.pem --clientauth"
     export ORDERER_CONN_ARGS="$ORDERER_PORT_ARGS --keyfile $CORE_PEER_TLS_CLIENTKEY_FILE --certfile $CORE_PEER_TLS_CLIENTCERT_FILE"
     echo $ORDERER_CONN_ARGS
-    $GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode install -n $n -v 1.0 -p github.com/hyperledger/fabric-samples/chaincode/abac/go
-    #$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode install -n ${n} -v 1.0 -p github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02
+    $GOPATH/src/github.com/hyperledger/fabric/.build/bin/peer chaincode install -n $n -v 1.0 -p github.com/hyperledger/fabric-samples/chaincode/abac/go
+    #$GOPATH/src/github.com/hyperledger/fabric/.build/bin/peer chaincode install -n ${n} -v 1.0 -p github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02
     #sleep 3
 done
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode list --installed -C $CHANNEL_NAME
+$GOPATH/src/github.com/hyperledger/fabric/.build/bin/peer chaincode list --installed -C $CHANNEL_NAME
 # Instantiate chaincode on the 1st peer of the 2nd org
 #makePolicy
 POLICY="OR ('org1MSP.member', 'org2MSP.member')"
@@ -190,7 +190,7 @@ echo $ORDERER_CONN_ARGS
 echo "Instantiating chaincode on $PEER_HOST ..."
 export ORDERER_PORT_ARGS=" -o orderer1-org0:7050 --tls --cafile $DATA/org0-ca-cert.pem --clientauth"
 export ORDERER_CONN_ARGS="$ORDERER_PORT_ARGS --keyfile $CORE_PEER_TLS_CLIENTKEY_FILE --certfile $CORE_PEER_TLS_CLIENTCERT_FILE"
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode instantiate -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "$POLICY" $ORDERER_CONN_ARGS
+$GOPATH/src/github.com/hyperledger/fabric/.build/bin/peer chaincode instantiate -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "$POLICY" $ORDERER_CONN_ARGS
 
 # Query chaincode from the 1st peer of the 1st org
 #initPeerVars ${PORGS[0]} 1
@@ -221,7 +221,7 @@ export ORDERER_CONN_ARGS="$ORDERER_PORT_ARGS --keyfile $CORE_PEER_TLS_CLIENTKEY_
 echo $ORDERER_CONN_ARGS
 #switchToUserIdentity
 #change switchToAdminIdentity
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode list --instantiated -C $CHANNEL_NAME $ORDERER_CONN_ARGS
+$GOPATH/src/github.com/hyperledger/fabric/.build/bin/peer chaincode list --instantiated -C $CHANNEL_NAME $ORDERER_CONN_ARGS
 chaincodeQuery 100
 
 #initPeerVars ${PORGS[0]} 1
@@ -253,7 +253,7 @@ export ORDERER_CONN_ARGS="$ORDERER_PORT_ARGS --keyfile $CORE_PEER_TLS_CLIENTKEY_
 echo $ORDERER_CONN_ARGS
 
 echo "Sending invoke transaction to $PEER_HOST ..."
-$GOPATH/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["invoke","a","b","10"]}' $ORDERER_CONN_ARGS
+$GOPATH/src/github.com/hyperledger/fabric/.build/bin/peer chaincode invoke -C $CHANNEL_NAME -n ${n} -v 1.0 -c '{"Args":["invoke","a","b","10"]}' $ORDERER_CONN_ARGS
 
 # Query chaincode from the 1st peer of the 1st org
 #initPeerVars ${PORGS[0]} 1

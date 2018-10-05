@@ -30,5 +30,5 @@ export ORDERER_CONN_ARGS="$ORDERER_PORT_ARGS --keyfile $CORE_PEER_TLS_CLIENTKEY_
 echo $ORDERER_CONN_ARGS
 
 echo "Sending invoke transaction to $PEER_HOST ..."
-${GOPATH}/src/github.com/hyperledger/fabric/build/bin/peer chaincode invoke -C ${CHANNEL_NAME} -n ${CHAINCODE_NAME} -v 1.0 -c '{"Args":["invoke","a","b","10"]}' $ORDERER_CONN_ARGS
+${GOPATH}/src/github.com/hyperledger/fabric/.build/bin/peer chaincode invoke -C ${CHANNEL_NAME} -n ${CHAINCODE_NAME} -v 1.0 -c '{"Args":["invoke","a","b","10"]}' $ORDERER_CONN_ARGS
 exit
